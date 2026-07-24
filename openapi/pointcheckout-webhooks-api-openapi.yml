@@ -1,0 +1,310 @@
+openapi: 3.0.1
+info:
+  title: Merchant Branches Webhooks API
+  description: "paymennt.com provides a collection of APIs that enable you to process and manage payments. Our APIs accept and return JSON in the HTTP body, and return standard HTTP response codes. You can consume the APIs directly using\n\nyour favorite HTTP/REST library or make use of one of our SDKs.\n\n# Introduction\n\nLearn how to integrate our APIs into your application\n\n### API Basics\n\nThe paymennt.com API gives you access to pretty much all the features you can use on our dashboard and lets you extend them for use in your application. It strives to be RESTful and is organized around the main resources you would be interacting with - with a few notable exceptions.\n\n### Requests and Response\n\nBoth request body data and response data are formatted as JSON. Content type for responses will always be `application/json`. Generally, all responses will be in the following format:\n\n```js title=\"/src/components/HelloCodeTitle.js\"\n{\n  \"success\": [boolean], // true indicates a successful operation\n  \"elapsed\": [number], // time spent server side processing the request\n  \"error\": [string], // if success is false, this will indicate the error\n  \"result\": [object] // the result of the operation\n}\n```"
+  version: '2.0'
+servers:
+- url: https://api.paymennt.com/mer/v2.0/
+  description: paymennt.com live environment
+- url: https://api.test.paymennt.com/mer/v2.0/
+  description: paymennt.com test environment
+security:
+- ApiKey: []
+  ApiSecret: []
+tags:
+- name: Webhooks
+  description: API endpoints for webhook management.
+paths:
+  /webhooks/{webhookId}:
+    get:
+      tags:
+      - Webhooks
+      summary: Get webhook by Id
+      operationId: get-webhook-by-id
+      parameters:
+      - name: webhookId
+        in: path
+        description: Webhook Id.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Webhook details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponseWrapper'
+              exampleSetFlag: false
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetWebhookErrorResponse'
+              exampleSetFlag: false
+      x-sort:
+        sort: '10060'
+  /webhooks:
+    get:
+      tags:
+      - Webhooks
+      summary: List webhooks
+      description: List all webhooks associated with merchant
+      operationId: list-webhooks
+      parameters:
+      - name: page
+        in: query
+        description: page number, default is 0
+        required: false
+        schema:
+          minimum: 0
+          type: number
+      - name: size
+        in: query
+        description: page size, default is 20
+        required: false
+        schema:
+          minimum: 1
+          type: number
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetListErrorResponse'
+              exampleSetFlag: false
+        '200':
+          description: List of all webhooks.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WebhookResponseWrapper'
+              exampleSetFlag: false
+      x-sort:
+        sort: '10050'
+    post:
+      tags:
+      - Webhooks
+      summary: Create new webhook
+      operationId: create-webhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+            exampleSetFlag: false
+        required: true
+      responses:
+        '200':
+          description: Webhook details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponseWrapper'
+              exampleSetFlag: false
+      x-sort:
+        sort: '10070'
+  /webhooks/{webhookId}/test:
+    post:
+      tags:
+      - Webhooks
+      summary: Test webhook
+      description: Make a test call for the address associated with the webhook.
+      operationId: test-webhook
+      parameters:
+      - name: webhookId
+        in: path
+        description: Webhook Id.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Webhook details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponseWrapper'
+              exampleSetFlag: false
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetWebhookErrorResponse'
+              exampleSetFlag: false
+      x-sort:
+        sort: '10080'
+  /webhooks/{webhookId}/disable:
+    post:
+      tags:
+      - Webhooks
+      summary: Disable webhook.
+      operationId: disable-webhook
+      parameters:
+      - name: webhookId
+        in: path
+        description: Webhook Id.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Webhook details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponseWrapper'
+              exampleSetFlag: false
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetWebhookErrorResponse'
+              exampleSetFlag: false
+      x-sort:
+        sort: '10090'
+  /webhooks/{webhookId}/enable:
+    post:
+      tags:
+      - Webhooks
+      summary: Enable webhook.
+      operationId: enable-webhook
+      parameters:
+      - name: webhookId
+        in: path
+        description: Webhook Id.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Webhook details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponseWrapper'
+              exampleSetFlag: false
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetWebhookErrorResponse'
+              exampleSetFlag: false
+      x-sort:
+        sort: '10100'
+  /webhooks/{webhookId}/delete:
+    post:
+      tags:
+      - Webhooks
+      summary: Delete webhook.
+      operationId: delete-webhook
+      parameters:
+      - name: webhookId
+        in: path
+        description: Webhook Id.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Webhook details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponseWrapper'
+              exampleSetFlag: false
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetWebhookErrorResponse'
+              exampleSetFlag: false
+      x-sort:
+        sort: '10110'
+components:
+  schemas:
+    WebhookResponseWrapper:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: true
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 12
+        result:
+          $ref: '#/components/schemas/WebhookResponse'
+    GetListErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: false
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 3
+        error:
+          type: string
+          description: Error message.
+          example: page size parameter must be a positive integer
+    WebhookRequest:
+      required:
+      - address
+      type: object
+      properties:
+        address:
+          type: string
+          description: Webhook endpoint that paymennt.com server will push messages to.
+    WebhookResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        hmacKey:
+          type: string
+        address:
+          type: string
+        failed:
+          type: boolean
+        enabled:
+          type: boolean
+      description: Result Object.
+    GetWebhookErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: false
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 3
+        error:
+          type: string
+          description: Error message
+          example: Webhook not found for API merchant
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      name: X-PointCheckout-Api-Key
+      in: header
+    ApiSecret:
+      type: apiKey
+      name: X-PointCheckout-Api-Secret
+      in: header
