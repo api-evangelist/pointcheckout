@@ -1,0 +1,27 @@
+# PointCheckout
+
+> PointCheckout is a MENA-region payments and rewards platform that lets shoppers pay with reward points and miles and lets merchants accept card and rewards payments. Its developer-facing Merchant API (powered by paymennt.com) provides hosted, link, QR, and mobile checkouts, subscriptions, branches, and webhooks. Authentication is an API key + secret header pair.
+
+## APIs
+- [Merchant API (OpenAPI 3.0.1)](https://docs.pointcheckout.com/api/): Checkouts (web/link/QR/mobile), subscriptions, branches, and webhooks. Live: https://api.paymennt.com/mer/v2.0/ ; Test: https://api.test.paymennt.com/mer/v2.0/
+
+## Specs
+- [OpenAPI](openapi/pointcheckout-merchant-api-openapi.yml)
+- [Authentication profile](authentication/pointcheckout-authentication.yml)
+- [Conventions](conventions/pointcheckout-conventions.yml)
+- [Error catalog](errors/pointcheckout-problem-types.yml)
+- [Data model](data-model/pointcheckout-data-model.yml)
+- [Webhooks](asyncapi/pointcheckout-webhooks.yml)
+- [Lifecycle](lifecycle/pointcheckout-lifecycle.yml)
+- [Sandbox / test environment](sandbox/pointcheckout-sandbox.yml)
+
+## Docs
+- [Documentation](https://docs.pointcheckout.com/docs/)
+- [API Reference](https://docs.pointcheckout.com/api/)
+- [Developer Quickstart](https://docs.pointcheckout.com/developer)
+- [E-commerce plugins](https://docs.pointcheckout.com/docs/integrate/ecomm)
+- [Mobile SDKs](https://docs.pointcheckout.com/docs/integrate/sdks)
+- [GitHub organization](https://github.com/pointcheckout)
+
+## Auth
+- Headers: X-PointCheckout-Api-Key and X-PointCheckout-Api-Secret

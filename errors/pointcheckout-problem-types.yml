@@ -1,0 +1,56 @@
+generated: '2026-07-20'
+method: derived
+format: custom-envelope
+source: openapi/pointcheckout-merchant-api-openapi.yml
+notes: >-
+  The Merchant API does not use RFC 9457 problem+json. Errors are returned in the
+  standard response wrapper with success=false and a human-readable `error`
+  string, at HTTP 400. Derived from the *ErrorResponse schemas and 4xx responses.
+envelope:
+  success: boolean (false on error)
+  elapsed: integer (ms)
+  error: string (human-readable message)
+problems:
+  - status: 400
+    schema: GetCheckoutErrorResponse
+    title: Checkout error
+    example_error: Checkout not found for API merchant
+    source_operations:
+      - openapi/pointcheckout-merchant-api-openapi.yml#get-checkout
+      - openapi/pointcheckout-merchant-api-openapi.yml#cancel-checkout
+      - openapi/pointcheckout-merchant-api-openapi.yml#refund-checkout
+      - openapi/pointcheckout-merchant-api-openapi.yml#create-web-checkout
+      - openapi/pointcheckout-merchant-api-openapi.yml#create-link-checkout
+      - openapi/pointcheckout-merchant-api-openapi.yml#create-qr-checkout
+      - openapi/pointcheckout-merchant-api-openapi.yml#create-mobile-checkout
+  - status: 400
+    schema: GetSubscriptionErrorResponse
+    title: Subscription error
+    source_operations:
+      - openapi/pointcheckout-merchant-api-openapi.yml#get-subscription
+      - openapi/pointcheckout-merchant-api-openapi.yml#pause-subscription
+      - openapi/pointcheckout-merchant-api-openapi.yml#resume-subscription
+  - status: 400
+    schema: GetBranchErrorResponse
+    title: Branch error
+    source_operations:
+      - openapi/pointcheckout-merchant-api-openapi.yml#get-branch-by-id
+  - status: 400
+    schema: PostBranchErrorResponse
+    title: Branch creation error
+    source_operations:
+      - openapi/pointcheckout-merchant-api-openapi.yml#create-branch
+  - status: 400
+    schema: GetWebhookErrorResponse
+    title: Webhook error
+    source_operations:
+      - openapi/pointcheckout-merchant-api-openapi.yml#get-webhook-by-id
+      - openapi/pointcheckout-merchant-api-openapi.yml#create-webhook
+  - status: 400
+    schema: GetListErrorResponse
+    title: List/search error
+    source_operations:
+      - openapi/pointcheckout-merchant-api-openapi.yml#search-checkouts
+      - openapi/pointcheckout-merchant-api-openapi.yml#search-subscriptions
+      - openapi/pointcheckout-merchant-api-openapi.yml#get-branches
+      - openapi/pointcheckout-merchant-api-openapi.yml#list-webhooks

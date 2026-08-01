@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.pointcheckout.com/api/
+source_test_card: https://docs.pointcheckout.com/docs/integrate/merchant-api/payment-links/
+notes: >-
+  PointCheckout / paymennt.com publishes a dedicated test environment separate
+  from live, selected by base host. The merchant-API integration docs publish one
+  test card, recorded verbatim below (no values invented).
+environments:
+  - mode: live
+    base_url: https://api.paymennt.com/mer/v2.0/
+  - mode: test
+    base_url: https://api.test.paymennt.com/mer/v2.0/
+auth:
+  scheme: api-key-pair
+  headers: [X-PointCheckout-Api-Key, X-PointCheckout-Api-Secret]
+  notes: Test-environment keys are issued from the merchant portal.
+test_cards:
+  documented_at: https://docs.pointcheckout.com/docs/integrate/merchant-api/payment-links/
+  values:
+    - number: '4242 4242 4242 4242'
+      expiry: '12/25'
+      cvv: '100'
+      name: TEST USER
+      brand: visa
+      outcome: success

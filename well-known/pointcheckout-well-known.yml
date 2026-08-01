@@ -1,0 +1,52 @@
+generated: '2026-07-20'
+method: probed
+source: live HTTPS probes of provider hosts (User-Agent Mozilla)
+probes:
+- host: docs.pointcheckout.com
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+- host: api.paymennt.com
+  paths:
+  - path: /.well-known/security.txt
+    status: 400
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 400
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 400
+    file: null
+  - path: /.well-known/api-catalog
+    status: 400
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 400
+    file: null
+  - path: /llms.txt
+    status: 400
+    file: null
+- host: pointcheckout.com
+  paths:
+  - path: /.well-known/security.txt
+    status: error
+    file: null
+    note: connection blocked/timeout (CDN edge rejected non-browser client)
+result: none found. No security.txt, OIDC/OAuth metadata, api-catalog, ai-plugin,
+  or llms.txt published on any probed host.

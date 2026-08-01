@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/pointcheckout-merchant-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKey
+  type: apiKey
+  in: header
+  parameter: X-PointCheckout-Api-Key
+  sources:
+  - openapi/pointcheckout-merchant-api-openapi.yml
+- name: ApiSecret
+  type: apiKey
+  in: header
+  parameter: X-PointCheckout-Api-Secret
+  sources:
+  - openapi/pointcheckout-merchant-api-openapi.yml

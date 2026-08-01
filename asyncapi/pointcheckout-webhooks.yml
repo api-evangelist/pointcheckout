@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: searched
+type: Webhooks
+source: openapi/pointcheckout-merchant-api-openapi.yml
+docs: https://docs.pointcheckout.com/docs/webhooks
+notes: >-
+  PointCheckout / paymennt.com documents a webhook surface: merchants register a
+  webhook endpoint (address) and the server pushes HMAC-signed messages to it on
+  checkout state changes. No published AsyncAPI document was found; this captures
+  the webhook catalog. Management is via the Merchant API webhook operations.
+delivery:
+  transport: https-push
+  signing: HMAC (per-webhook hmacKey returned on webhook creation)
+  registration_field: address
+management_operations:
+  - openapi/pointcheckout-merchant-api-openapi.yml#create-webhook
+  - openapi/pointcheckout-merchant-api-openapi.yml#list-webhooks
+  - openapi/pointcheckout-merchant-api-openapi.yml#get-webhook-by-id
+  - openapi/pointcheckout-merchant-api-openapi.yml#test-webhook
+  - openapi/pointcheckout-merchant-api-openapi.yml#enable-webhook
+  - openapi/pointcheckout-merchant-api-openapi.yml#disable-webhook
+  - openapi/pointcheckout-merchant-api-openapi.yml#delete-webhook
+events:
+  notes: >-
+    Webhook messages are emitted on checkout lifecycle transitions (e.g. checkout
+    PAID / CANCELLED). A concrete event-type catalog was not published in the docs
+    at capture time, so specific event names are not enumerated here.

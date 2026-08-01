@@ -1,0 +1,20 @@
+{
+  "provider": "pointcheckout",
+  "sources": [
+    "pointcheckout-branches-api-openapi.yml",
+    "pointcheckout-checkout-api-openapi.yml",
+    "pointcheckout-customer-subscription-api-openapi.yml",
+    "pointcheckout-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "pointcheckout-branches-api-openapi.yml",
+    "pointcheckout-checkout-api-openapi.yml",
+    "pointcheckout-customer-subscription-api-openapi.yml",
+    "pointcheckout-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

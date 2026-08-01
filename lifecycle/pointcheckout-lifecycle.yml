@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/pointcheckout-merchant-api-openapi.yml
+notes: >-
+  Versioning is carried in the URI path (/mer/v2.0/). A dedicated live vs test
+  environment is published (api.paymennt.com vs api.test.paymennt.com). No public
+  status page, deprecation policy, SLA, or Sunset/Deprecation header support was
+  found, so no StatusPage or Deprecation pointer is emitted.
+versioning:
+  scheme: uri-path
+  current: v2.0
+  docs: https://docs.pointcheckout.com/api/
+environments:
+  live: https://api.paymennt.com/mer/v2.0/
+  test: https://api.test.paymennt.com/mer/v2.0/
+deprecation:
+  policy_url: null
+  sunset_header: false
+sla:
+  url: null
+status_page: null
+deprecated_operations: []

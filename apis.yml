@@ -1,8 +1,29 @@
 aid: pointcheckout
 name: PointCheckout
-description: PointCheckout is a company surfaced as a portfolio company of 500-global and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  PointCheckout is a MENA-region payments and rewards platform, backed by 500
+  Global, that lets shoppers pay online with reward points and miles and lets
+  merchants accept card and rewards payments. Its developer-facing Merchant API
+  (powered by paymennt.com) exposes hosted web, payment-link, QR, and mobile
+  checkouts, recurring subscriptions, merchant branches, and HMAC-signed
+  webhooks. The API is RESTful JSON, versioned in the URI path (v2.0), secured
+  with an API key and secret header pair, and ships with a separate test
+  environment plus iOS/Android SDKs and e-commerce plugins for Magento 2,
+  WooCommerce, OpenCart, and Shopify.
 url: https://raw.githubusercontent.com/api-evangelist/pointcheckout/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://docs.pointcheckout.com/img/logo.svg
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -11,15 +32,122 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Payments
+- Checkout
+- Subscriptions
+- Rewards
+- Loyalty
+- Webhooks
+- MENA
+- E-Commerce
+apis:
+- aid: pointcheckout:pointcheckout-branches-api
+  name: PointCheckout Branches API
+  description: API endpoints for branch management.
+  humanURL: https://docs.pointcheckout.com/api/
+  baseURL: https://api.paymennt.com/mer/v2.0/
+  tags:
+  - Branches
+  properties:
+  - type: OpenAPI
+    url: openapi/pointcheckout-branches-api-openapi.yml
+- aid: pointcheckout:pointcheckout-checkout-api
+  name: PointCheckout Checkout API
+  description: API endpoints for checkout management.
+  humanURL: https://docs.pointcheckout.com/api/
+  baseURL: https://api.paymennt.com/mer/v2.0/
+  tags:
+  - Checkout
+  properties:
+  - type: OpenAPI
+    url: openapi/pointcheckout-checkout-api-openapi.yml
+- aid: pointcheckout:pointcheckout-customer-subscription-api
+  name: PointCheckout Customer subscription API
+  description: API endpoints for Customer subscription management.
+  humanURL: https://docs.pointcheckout.com/api/
+  baseURL: https://api.paymennt.com/mer/v2.0/
+  tags:
+  - Customer subscription
+  properties:
+  - type: OpenAPI
+    url: openapi/pointcheckout-customer-subscription-api-openapi.yml
+- aid: pointcheckout:pointcheckout-webhooks-api
+  name: PointCheckout Webhooks API
+  description: API endpoints for webhook management.
+  humanURL: https://docs.pointcheckout.com/api/
+  baseURL: https://api.paymennt.com/mer/v2.0/
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/pointcheckout-webhooks-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/pointcheckout-domain-security.yml
+- type: TrustCenter
+  url: security/pointcheckout-trust-center.yml
+- type: Compliance
+  url: security/pointcheckout-trust-center.yml
+- type: Authentication
+  url: authentication/pointcheckout-authentication.yml
+- type: Conventions
+  url: conventions/pointcheckout-conventions.yml
+- type: ErrorCatalog
+  url: errors/pointcheckout-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/pointcheckout-lifecycle.yml
+- type: Conformance
+  url: conformance/pointcheckout-conformance.yml
+- type: DataModel
+  url: data-model/pointcheckout-data-model.yml
+- type: Sandbox
+  url: sandbox/pointcheckout-sandbox.yml
+- type: Webhooks
+  url: asyncapi/pointcheckout-webhooks.yml
+- type: MCPServer
+  url: mcp/pointcheckout-mcp.yml
+- type: LLMsTxt
+  url: llms/pointcheckout-llms.txt
+- type: Packages
+  url: packages/pointcheckout-packages.yml
+- type: SDKs
+  url: packages/pointcheckout-packages.yml
+- type: WellKnown
+  url: well-known/pointcheckout-well-known.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DeveloperPortal
+  url: https://docs.pointcheckout.com/
+- type: Documentation
+  url: https://docs.pointcheckout.com/docs/
+- type: APIReference
+  url: https://docs.pointcheckout.com/api/
+- type: GettingStarted
+  url: https://docs.pointcheckout.com/docs/
+- type: Quickstart
+  url: https://docs.pointcheckout.com/developer
+- type: Support
+  url: https://www.pointcheckout.com/en/home/contact
+- type: Blog
+  url: https://www.pointcheckout.com/en/blog
+- type: GitHubOrganization
+  url: https://github.com/pointcheckout
+- type: TermsOfService
+  url: https://www.pointcheckout.com/legal/merchant/merchant-terms-and-conditions
+- type: PrivacyPolicy
+  url: https://www.pointcheckout.com/legal/privacy/privacy-policy
 - type: Website
   url: https://pointcheckout.com
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1

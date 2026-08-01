@@ -1,0 +1,69 @@
+generated: '2026-07-20'
+method: searched
+source: GitHub orgs github.com/paymennt + github.com/pointcheckout, Packagist, docs.pointcheckout.com/docs/integrate/sdks
+notes: >-
+  First-party client SDKs, server libraries, and e-commerce plugins published by
+  the PointCheckout / Paymennt GitHub organizations. The Merchant API is powered
+  by paymennt.com. A PHP server client is published on Packagist; mobile SDKs and
+  a Java client are distributed via GitHub. No npm / PyPI / NuGet / RubyGems /
+  crates.io client library was found.
+summary:
+  official_count: 4
+  registries:
+  - packagist
+  - github
+packages:
+- name: paymennt-php
+  language: php
+  official: true
+  registry: packagist
+  coordinates: paymennt/paymennt-php
+  license: MIT
+  install: composer require paymennt/paymennt-php
+  url: https://github.com/paymennt/paymennt-php
+  homepage: https://packagist.org/packages/paymennt/paymennt-php
+  description: Official PHP server client for the Paymennt (PointCheckout) API.
+- name: paymennt-java
+  language: java
+  official: true
+  registry: github
+  coordinates: paymennt/paymennt-java
+  url: https://github.com/paymennt/paymennt-java
+  description: Official Java server client for the Paymennt (PointCheckout) API.
+- name: pointcheckout-ios-sdk
+  language: swift
+  official: true
+  registry: github
+  coordinates: pointcheckout/ios-sdk
+  url: https://github.com/pointcheckout/ios-sdk
+  docs: https://docs.pointcheckout.com/docs/integrate/sdks/
+  install: Add via Swift Package Manager / CocoaPods (see docs)
+  description: Official iOS (Swift) merchant SDK for embedding PointCheckout payments.
+- name: pointcheckout-android-sdk
+  language: java
+  official: true
+  registry: github
+  coordinates: pointcheckout/android-sdk
+  url: https://github.com/pointcheckout/android-sdk
+  docs: https://docs.pointcheckout.com/docs/integrate/sdks/
+  install: Add the Android SDK dependency (see docs)
+  description: Official Android merchant SDK for embedding PointCheckout payments.
+plugins:
+- name: magento2-pointcheckout
+  language: php
+  official: true
+  kind: ecommerce-plugin
+  url: https://github.com/pointcheckout/magento2-pointcheckout
+  description: Official Magento 2 payment module.
+- name: woocommerce
+  language: php
+  official: true
+  kind: ecommerce-plugin
+  url: https://github.com/paymennt/woocommerce
+  description: Official WooCommerce payment plugin.
+- name: opencart
+  language: php
+  official: true
+  kind: ecommerce-plugin
+  url: https://github.com/paymennt/opencart
+  description: Official OpenCart payment extension.

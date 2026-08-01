@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/pointcheckout-merchant-api-openapi.yml
+skills:
+  - file: pointcheckout-accept-payment.md
+    name: Accept a payment with PointCheckout
+    api: openapi/pointcheckout-merchant-api-openapi.yml
+    operations: [create-web-checkout, get-checkout, refund-checkout, create-webhook]
+  - file: pointcheckout-manage-subscriptions.md
+    name: Manage recurring subscriptions with PointCheckout
+    api: openapi/pointcheckout-merchant-api-openapi.yml
+    operations: [create-subscription, get-subscription, get-subscription-payments, pause-subscription, resume-subscription]

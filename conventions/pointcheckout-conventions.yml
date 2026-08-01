@@ -1,0 +1,52 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/pointcheckout-merchant-api-openapi.yml
+docs: https://docs.pointcheckout.com/api/
+notes: >-
+  Cross-cutting request/response semantics for the PointCheckout Merchant API
+  (powered by paymennt.com). Derived from the OpenAPI plus the documented API
+  basics. No idempotency-key contract is documented, so no Idempotency pointer
+  is emitted.
+authentication:
+  style: api-key-pair
+  headers:
+    - X-PointCheckout-Api-Key
+    - X-PointCheckout-Api-Secret
+  location: header
+  see: authentication/pointcheckout-authentication.yml
+response_envelope:
+  shape: wrapper
+  fields:
+    success: boolean — true indicates a successful operation
+    elapsed: number — server-side processing time in milliseconds
+    error: string — error message when success is false
+    result: object — the result of the operation on success
+  content_type: application/json
+pagination:
+  style: page-number
+  request_params:
+    - page   # zero-based page number
+    - size   # items per page
+  response_fields:
+    - page
+    - size
+    - totalPages
+    - totalElements
+    - content
+idempotency:
+  supported: false
+  notes: No idempotency-key header/parameter is documented in the OpenAPI or docs.
+versioning:
+  scheme: uri-path
+  current: v2.0
+  base_path: /mer/v2.0/
+  see: lifecycle/pointcheckout-lifecycle.yml
+errors:
+  format: custom-envelope
+  see: errors/pointcheckout-problem-types.yml
+rate_limiting:
+  documented: false
+webhooks:
+  supported: true
+  signing: HMAC (hmacKey issued per webhook)
+  see: asyncapi/pointcheckout-webhooks.yml

@@ -1,0 +1,19 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for PointCheckout Merchant API
+  version: 1.0.0
+extends: openapi/pointcheckout-merchant-api-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: pointcheckout
+      x-apievangelist-powered-by: paymennt.com
+      x-apievangelist-auth: api-key-pair
+      x-apievangelist-webhooks: true
+      x-apievangelist-environments:
+        live: https://api.paymennt.com/mer/v2.0/
+        test: https://api.test.paymennt.com/mer/v2.0/
+  - target: $.info
+    update:
+      x-apievangelist-error-format: custom-envelope
+      x-apievangelist-pagination: page-number

@@ -1,0 +1,42 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/pointcheckout-merchant-api-openapi.yml
+notes: >-
+  Entity-relationship graph derived from the Merchant API OpenAPI schemas and
+  path structure.
+entities:
+  - name: Checkout
+    schema: CheckoutResponse
+    id_field: id
+    variants: [web, link, qr, mobile]
+    states: [PAID, CANCELLED]
+  - name: Customer
+    schema: CheckoutCustomerResponse
+  - name: Subscription
+    schema: SubscriptionResponse
+    id_field: id
+  - name: SubscriptionPayment
+    schema: SubscriptionPaymentResponse
+  - name: Branch
+    schema: BranchResponse
+    id_field: id
+  - name: Webhook
+    schema: WebhookResponse
+    id_field: id
+relationships:
+  - from: Checkout
+    to: Customer
+    type: has_one
+    via: customer
+  - from: Subscription
+    to: SubscriptionPayment
+    type: has_many
+    via: get-subscription-payments
+  - from: Checkout
+    to: Branch
+    type: belongs_to
+    via: branch
+  - from: Webhook
+    to: Branch
+    type: belongs_to
+    via: merchant/branch scope

@@ -1,0 +1,36 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/pointcheckout-merchant-api-openapi.yml + https://www.paymennt.com/
+notes: >-
+  Standards conformance derived from the OpenAPI and confirmed against the
+  provider site. The Merchant API is a RESTful JSON payments API secured with an
+  API key/secret header pair. No OAuth2/OIDC, no RFC 9457 problem+json (custom
+  error envelope). Paymennt.com (PointCheckout) publicly states PCI DSS Level 1
+  compliance; see security/pointcheckout-trust-center.yml.
+standards:
+  - id: rest-json
+    conforms: true
+    evidence: JSON request/response bodies, resource-oriented paths, standard HTTP status codes
+  - id: openapi-3.0
+    conforms: true
+    evidence: openapi 3.0.1 document published at docs.pointcheckout.com/api
+  - id: apikey-auth
+    conforms: true
+    evidence: securitySchemes ApiKey + ApiSecret (apiKey in header)
+  - id: webhooks-hmac
+    conforms: true
+    evidence: webhook management endpoints; HMAC key issued per webhook
+  - id: oauth2
+    conforms: false
+  - id: openid-connect
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: errors use a custom success/elapsed/error envelope, not application/problem+json
+  - id: json-api
+    conforms: false
+  - id: pci-dss
+    conforms: true
+    level: Level 1
+    evidence: '"Paymennt.com is PCI DSS Level 1 compliant." (paymennt.com); card data handled via hosted checkout / SDKs'
+    source: https://www.paymennt.com/

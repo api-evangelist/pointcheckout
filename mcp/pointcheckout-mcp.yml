@@ -1,0 +1,90 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/pointcheckout-merchant-api-openapi.yml
+notes: >-
+  No official hosted/remote MCP server was found for PointCheckout / paymennt.com.
+  This is a candidate tool surface derived one-to-one from the Merchant API
+  OpenAPI operations, for use in forging an MCP server.
+server:
+  name: pointcheckout
+  transport: http
+tools:
+  - name: create_web_checkout
+    description: Create a web (hosted page) checkout
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#create-web-checkout
+  - name: create_link_checkout
+    description: Create a payment link checkout
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#create-link-checkout
+  - name: create_qr_checkout
+    description: Create a QR checkout
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#create-qr-checkout
+  - name: create_mobile_checkout
+    description: Create a mobile checkout
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#create-mobile-checkout
+  - name: search_checkouts
+    description: Search checkouts
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#search-checkouts
+  - name: get_checkout
+    description: Get a checkout by id
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#get-checkout
+  - name: cancel_checkout
+    description: Cancel a checkout
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#cancel-checkout
+  - name: refund_checkout
+    description: Refund a checkout
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#refund-checkout
+  - name: search_subscriptions
+    description: Search subscriptions
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#search-subscriptions
+  - name: create_subscription
+    description: Create a subscription
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#create-subscription
+  - name: get_subscription
+    description: Get a subscription by id
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#get-subscription
+  - name: pause_subscription
+    description: Pause a subscription
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#pause-subscription
+  - name: resume_subscription
+    description: Resume a subscription
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#resume-subscription
+  - name: get_subscription_payments
+    description: List payments for a subscription
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#get-subscription-payments
+  - name: get_branch_by_id
+    description: Get a branch by id
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#get-branch-by-id
+  - name: get_branches
+    description: List branches
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#get-branches
+  - name: create_branch
+    description: Create a branch
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#create-branch
+  - name: disable_branch
+    description: Disable a branch
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#disable-branch
+  - name: enable_branch
+    description: Enable a branch
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#enable-branch
+  - name: get_webhook_by_id
+    description: Get a webhook by id
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#get-webhook-by-id
+  - name: list_webhooks
+    description: List webhooks
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#list-webhooks
+  - name: create_webhook
+    description: Create a webhook
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#create-webhook
+  - name: test_webhook
+    description: Send a test message to a webhook
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#test-webhook
+  - name: disable_webhook
+    description: Disable a webhook
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#disable-webhook
+  - name: enable_webhook
+    description: Enable a webhook
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#enable-webhook
+  - name: delete_webhook
+    description: Delete a webhook
+    source_operation: openapi/pointcheckout-merchant-api-openapi.yml#delete-webhook
