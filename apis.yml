@@ -90,6 +90,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/pointcheckout-merchant-api-overlay.yaml
 - type: DomainSecurity
   url: security/pointcheckout-domain-security.yml
 - type: TrustCenter
