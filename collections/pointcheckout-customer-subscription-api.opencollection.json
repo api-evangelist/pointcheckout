@@ -1,0 +1,190 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Merchant Branches Customer subscription API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-PointCheckout-Api-Key",
+      "value": "{{X-PointCheckout-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customer subscription",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.paymennt.com/mer/v2.0/subscription",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "comma separated list of subscription statuses"
+              },
+              {
+                "name": "customer.reference",
+                "value": "",
+                "type": "query",
+                "description": "query by customer reference Id"
+              },
+              {
+                "name": "customer.email",
+                "value": "",
+                "type": "query",
+                "description": "query by customer email"
+              },
+              {
+                "name": "customer.phone",
+                "value": "",
+                "type": "query",
+                "description": "query by customer phone number"
+              },
+              {
+                "name": "afterId",
+                "value": "",
+                "type": "query",
+                "description": "filter subscriptions after the provided id"
+              },
+              {
+                "name": "afterTimestamp",
+                "value": "",
+                "type": "query",
+                "description": "query subscriptions created after specific date/time, date format is `yyyy-mm-dd HH:MM:SS`"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number, default is 0"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "page size, default is 20"
+              }
+            ]
+          },
+          "docs": "Search subscriptions"
+        },
+        {
+          "info": {
+            "name": "Create subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/subscription",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create subscription"
+        },
+        {
+          "info": {
+            "name": "Get subscription by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.paymennt.com/mer/v2.0/subscription/:subscriptionId",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription Id retrieved from paymennt.com API."
+              }
+            ]
+          },
+          "docs": "Get subscription by Id"
+        },
+        {
+          "info": {
+            "name": "Pause subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/subscription/:subscriptionId/pause",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription Id retrieved from paymennt.com API."
+              }
+            ]
+          },
+          "docs": "Pause subscription"
+        },
+        {
+          "info": {
+            "name": "Resume subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/subscription/:subscriptionId/resume",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription Id retrieved from paymennt.com API."
+              }
+            ]
+          },
+          "docs": "Resume subscription"
+        },
+        {
+          "info": {
+            "name": "Get subscription payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.paymennt.com/mer/v2.0/subscription/:subscriptionId/payment",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "Subscription Id retrieved from paymennt.com API."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number, default is 0"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "page size, default is 20"
+              }
+            ]
+          },
+          "docs": "Get subscription payments"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

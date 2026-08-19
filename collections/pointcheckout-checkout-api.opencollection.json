@@ -1,0 +1,240 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Merchant Branches Checkout API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-PointCheckout-Api-Key",
+      "value": "{{X-PointCheckout-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Checkout",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create web checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/checkout/web",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create web checkout"
+        },
+        {
+          "info": {
+            "name": "Create payment link checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/checkout/link",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create payment link checkout"
+        },
+        {
+          "info": {
+            "name": "Create QR checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/checkout/qr",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create QR checkout"
+        },
+        {
+          "info": {
+            "name": "Create mobile checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/checkout/mobile",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create mobile checkout"
+        },
+        {
+          "info": {
+            "name": "Search checkouts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.paymennt.com/mer/v2.0/checkout",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "query by checkout type"
+              },
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "query",
+                "description": "query by requestId used when submitting checkout"
+              },
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "query",
+                "description": "query by orderId associated with checkout"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "comma separated list of checkout statuses"
+              },
+              {
+                "name": "customer.reference",
+                "value": "",
+                "type": "query",
+                "description": "query by customer reference Id"
+              },
+              {
+                "name": "customer.email",
+                "value": "",
+                "type": "query",
+                "description": "query by customer email"
+              },
+              {
+                "name": "customer.phone",
+                "value": "",
+                "type": "query",
+                "description": "query by customer phone number"
+              },
+              {
+                "name": "afterId",
+                "value": "",
+                "type": "query",
+                "description": "filter checkouts after the provided id"
+              },
+              {
+                "name": "afterTimestamp",
+                "value": "",
+                "type": "query",
+                "description": "query checkouts created after specific date/time, date format is `yyyy-mm-dd HH:MM:SS`"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number, default is 0"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "page size, default is 20"
+              }
+            ]
+          },
+          "docs": "Search checkouts"
+        },
+        {
+          "info": {
+            "name": "Get checkout by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.paymennt.com/mer/v2.0/checkout/:checkoutId",
+            "params": [
+              {
+                "name": "checkoutId",
+                "value": "",
+                "type": "path",
+                "description": "Checkout Id retrieved from paymennt.com API."
+              }
+            ]
+          },
+          "docs": "Get checkout by Id"
+        },
+        {
+          "info": {
+            "name": "Cancel pending checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/checkout/:checkoutId/cancel",
+            "params": [
+              {
+                "name": "checkoutId",
+                "value": "",
+                "type": "path",
+                "description": "Checkout Id."
+              }
+            ]
+          },
+          "docs": "Cancel pending checkout"
+        },
+        {
+          "info": {
+            "name": "Refund a checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/checkout/:checkoutId/refund",
+            "params": [
+              {
+                "name": "checkoutId",
+                "value": "1686414183718160600",
+                "type": "path",
+                "description": "Checkout Id retrieved from paymennt.com API."
+              },
+              {
+                "name": "amount",
+                "value": "1500",
+                "type": "query",
+                "description": "Refun amount."
+              },
+              {
+                "name": "currency",
+                "value": "USD",
+                "type": "query",
+                "description": "Currency ISO code."
+              },
+              {
+                "name": "note",
+                "value": "Out of stock",
+                "type": "query",
+                "description": "Refund note."
+              }
+            ]
+          },
+          "docs": "Refund a checkout"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

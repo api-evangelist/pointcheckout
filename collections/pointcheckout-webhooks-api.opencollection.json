@@ -1,0 +1,161 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Merchant Branches Webhooks API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-PointCheckout-Api-Key",
+      "value": "{{X-PointCheckout-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get webhook by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.paymennt.com/mer/v2.0/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "Webhook Id."
+              }
+            ]
+          },
+          "docs": "Get webhook by Id"
+        },
+        {
+          "info": {
+            "name": "List webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.paymennt.com/mer/v2.0/webhooks",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number, default is 0"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "page size, default is 20"
+              }
+            ]
+          },
+          "docs": "List all webhooks associated with merchant"
+        },
+        {
+          "info": {
+            "name": "Create new webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new webhook"
+        },
+        {
+          "info": {
+            "name": "Test webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/webhooks/:webhookId/test",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "Webhook Id."
+              }
+            ]
+          },
+          "docs": "Make a test call for the address associated with the webhook."
+        },
+        {
+          "info": {
+            "name": "Disable webhook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/webhooks/:webhookId/disable",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "Webhook Id."
+              }
+            ]
+          },
+          "docs": "Disable webhook."
+        },
+        {
+          "info": {
+            "name": "Enable webhook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/webhooks/:webhookId/enable",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "Webhook Id."
+              }
+            ]
+          },
+          "docs": "Enable webhook."
+        },
+        {
+          "info": {
+            "name": "Delete webhook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/webhooks/:webhookId/delete",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "Webhook Id."
+              }
+            ]
+          },
+          "docs": "Delete webhook."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

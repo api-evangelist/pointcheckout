@@ -1,0 +1,1424 @@
+{
+  "item": [
+    {
+      "id": "822cc82d-8819-478c-945f-a8bf3f37e013",
+      "name": "Checkout",
+      "description": {
+        "content": "API endpoints for checkout management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d8ec1d6b-0cb3-44c5-990b-26e3e290ab97",
+          "name": "Create web checkout",
+          "request": {
+            "name": "Create web checkout",
+            "description": {},
+            "url": {
+              "path": [
+                "checkout",
+                "web"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<number>\",\n  \"billingAddress\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"currency\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"id\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"items\": [\n    {\n      \"linetotal\": \"<number>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"sku\": \"<string>\",\n      \"unitprice\": \"<number>\"\n    },\n    {\n      \"linetotal\": \"<number>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"sku\": \"<string>\",\n      \"unitprice\": \"<number>\"\n    }\n  ],\n  \"orderId\": \"<string>\",\n  \"requestId\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"totals\": {\n    \"subtotal\": \"<number>\",\n    \"tax\": \"<number>\",\n    \"shipping\": \"<number>\",\n    \"handling\": \"<number>\",\n    \"discount\": \"<number>\",\n    \"skipTotalsValidation\": true\n  },\n  \"deliveryAddress\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"branchId\": \"<long>\",\n  \"allowedPaymentMethods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"defaultPaymentMethod\": \"<string>\",\n  \"language\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f4ddbda1-f69d-4f94-a6e7-1d6cf9e4aeca",
+              "name": "Checkout details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    "web"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"billingAddress\": {\n    \"address1\": \"[ADDRESS 1]\",\n    \"city\": \"[CITY]\",\n    \"country\": \"AE\",\n    \"name\": \"[NAME]\",\n    \"address2\": \"[ADDRESS 2]\",\n    \"state\": \"[STATE]\",\n    \"zip\": \"12345\"\n  },\n  \"currency\": \"AED\",\n  \"customer\": {\n    \"email\": \"[CUSTOMER EMAIL]\",\n    \"firstName\": \"[First name]\",\n    \"lastName\": \"[Last name]\",\n    \"id\": \"123456\",\n    \"phone\": \"[CUSTOMER PHONE]\"\n  },\n  \"items\": [\n    {\n      \"linetotal\": 100,\n      \"name\": \"Dark grey sunglasses\",\n      \"quantity\": 2,\n      \"sku\": \"1116521\",\n      \"unitprice\": 50\n    },\n    {\n      \"linetotal\": 100,\n      \"name\": \"Dark grey sunglasses\",\n      \"quantity\": 2,\n      \"sku\": \"1116521\",\n      \"unitprice\": 50\n    }\n  ],\n  \"orderId\": \"CHK-100000214\",\n  \"requestId\": \"CHK-100000214-r1\",\n  \"returnUrl\": \"https://shop.example.com/payment-redirect/\",\n  \"totals\": {\n    \"subtotal\": 100,\n    \"tax\": 5,\n    \"shipping\": 3,\n    \"handling\": 2,\n    \"discount\": 10,\n    \"skipTotalsValidation\": false\n  },\n  \"deliveryAddress\": {\n    \"address1\": \"[ADDRESS 1]\",\n    \"city\": \"[CITY]\",\n    \"country\": \"AE\",\n    \"name\": \"[NAME]\",\n    \"address2\": \"[ADDRESS 2]\",\n    \"state\": \"[STATE]\",\n    \"zip\": \"12345\"\n  },\n  \"branchId\": \"<long>\",\n  \"allowedPaymentMethods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"defaultPaymentMethod\": \"CARD\",\n  \"language\": \"EN\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"elapsed\": 12,\n  \"result\": {\n    \"id\": \"1653241101733169556\",\n    \"displayId\": \"QS3IM5\",\n    \"checkoutKey\": \"90ed4298f15d46df994fd1cfbbec5aa24390e811295cf8b5\",\n    \"requestId\": \"ORD-1234-r1\",\n    \"orderId\": \"ORD-1234\",\n    \"currency\": \"USD\",\n    \"amount\": 1499.99,\n    \"cashAmount\": 0,\n    \"status\": \"Expired\",\n    \"totalRefunded\": 0,\n    \"redirectUrl\": \"https://pay.test.paymennt.com/checkout/7a3ce540effe3c9a568a577d1f717e5267e73dc503663d4f\",\n    \"usedPaymentMethod\": \"PointCheckout\",\n    \"customer\": {},\n    \"billingAddress\": {\n      \"address1\": \"[ADDRESS 1]\",\n      \"city\": \"[CITY]\",\n      \"country\": \"AE\",\n      \"name\": \"[NAME]\",\n      \"address2\": \"[ADDRESS 2]\",\n      \"state\": \"[STATE]\",\n      \"zip\": \"12345\"\n    },\n    \"deliveryAddress\": {\n      \"address1\": \"[ADDRESS 1]\",\n      \"city\": \"[CITY]\",\n      \"country\": \"AE\",\n      \"name\": \"[NAME]\",\n      \"address2\": \"[ADDRESS 2]\",\n      \"state\": \"[STATE]\",\n      \"zip\": \"12345\"\n    },\n    \"firebaseCollection\": \"string\",\n    \"firebaseDatabase\": \"pc-test-734bc\",\n    \"firebaseDocument\": \"string\",\n    \"timestamp\": \"1952-02-15T01:18:55.716Z\",\n    \"branchId\": \"1601731695315563241\",\n    \"branchName\": \"Test store\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5235effd-2d5a-47fc-868b-decef1a628e8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    "web"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"billingAddress\": {\n    \"address1\": \"[ADDRESS 1]\",\n    \"city\": \"[CITY]\",\n    \"country\": \"AE\",\n    \"name\": \"[NAME]\",\n    \"address2\": \"[ADDRESS 2]\",\n    \"state\": \"[STATE]\",\n    \"zip\": \"12345\"\n  },\n  \"currency\": \"AED\",\n  \"customer\": {\n    \"email\": \"[CUSTOMER EMAIL]\",\n    \"firstName\": \"[First name]\",\n    \"lastName\": \"[Last name]\",\n    \"id\": \"123456\",\n    \"phone\": \"[CUSTOMER PHONE]\"\n  },\n  \"items\": [\n    {\n      \"linetotal\": 100,\n      \"name\": \"Dark grey sunglasses\",\n      \"quantity\": 2,\n      \"sku\": \"1116521\",\n      \"unitprice\": 50\n    },\n    {\n      \"linetotal\": 100,\n      \"name\": \"Dark grey sunglasses\",\n      \"quantity\": 2,\n      \"sku\": \"1116521\",\n      \"unitprice\": 50\n    }\n  ],\n  \"orderId\": \"CHK-100000214\",\n  \"requestId\": \"CHK-100000214-r1\",\n  \"returnUrl\": \"https://shop.example.com/payment-redirect/\",\n  \"totals\": {\n    \"subtotal\": 100,\n    \"tax\": 5,\n    \"shipping\": 3,\n    \"handling\": 2,\n    \"discount\": 10,\n    \"skipTotalsValidation\": false\n  },\n  \"deliveryAddress\": {\n    \"address1\": \"[ADDRESS 1]\",\n    \"city\": \"[CITY]\",\n    \"country\": \"AE\",\n    \"name\": \"[NAME]\",\n    \"address2\": \"[ADDRESS 2]\",\n    \"state\": \"[STATE]\",\n    \"zip\": \"12345\"\n  },\n  \"branchId\": \"<long>\",\n  \"allowedPaymentMethods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"defaultPaymentMethod\": \"CARD\",\n  \"language\": \"EN\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"elapsed\": 3,\n  \"error\": \"Checkout not found for API merchant\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d47f21c0-97a3-4742-b446-f0642d8bf069",
+          "name": "Create payment link checkout",
+          "request": {
+            "name": "Create payment link checkout",
+            "description": {},
+            "url": {
+              "path": [
+                "checkout",
+                "link"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"orderId\": \"<string>\",\n  \"requestId\": \"<string>\",\n  \"totals\": {\n    \"subtotal\": \"<number>\",\n    \"tax\": \"<number>\",\n    \"shipping\": \"<number>\",\n    \"handling\": \"<number>\",\n    \"discount\": \"<number>\",\n    \"skipTotalsValidation\": true\n  },\n  \"items\": [\n    {\n      \"linetotal\": \"<number>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"sku\": \"<string>\",\n      \"unitprice\": \"<number>\"\n    },\n    {\n      \"linetotal\": \"<number>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"sku\": \"<string>\",\n      \"unitprice\": \"<number>\"\n    }\n  ],\n  \"sendSms\": false,\n  \"sendEmail\": false,\n  \"customer\": {\n    \"email\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"id\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"billingAddress\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"deliveryAddress\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"branchId\": \"<long>\",\n  \"allowedPaymentMethods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"defaultPaymentMethod\": \"<string>\",\n  \"expiresIn\": \"<integer>\",\n  \"language\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "781a4240-aa69-4702-9511-d152ec8c0151",
+              "name": "Checkout details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    "link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"currency\": \"AED\",\n  \"description\": \"<string>\",\n  \"orderId\": \"CHK-100000214\",\n  \"requestId\": \"CHK-100000214-r1\",\n  \"totals\": {\n    \"subtotal\": 100,\n    \"tax\": 5,\n    \"shipping\": 3,\n    \"handling\": 2,\n    \"discount\": 10,\n    \"skipTotalsValidation\": false\n  },\n  \"items\": [\n    {\n      \"linetotal\": 100,\n      \"name\": \"Dark grey sunglasses\",\n      \"quantity\": 2,\n      \"sku\": \"1116521\",\n      \"unitprice\": 50\n    },\n    {\n      \"linetotal\": 100,\n      \"name\": \"Dark grey sunglasses\",\n      \"quantity\": 2,\n      \"sku\": \"1116521\",\n      \"unitprice\": 50\n    }\n  ],\n  \"sendSms\": true,\n  \"sendEmail\": true,\n  \"customer\": {\n    \"email\": \"[CUSTOMER EMAIL]\",\n    \"firstName\": \"[First name]\",\n    \"lastName\": \"[Last name]\",\n    \"id\": \"123456\",\n    \"phone\": \"[CUSTOMER PHONE]\"\n  },\n  \"billingAddress\": {\n    \"address1\": \"[ADDRESS 1]\",\n    \"city\": \"[CITY]\",\n    \"country\": \"AE\",\n    \"name\": \"[NAME]\",\n    \"address2\": \"[ADDRESS 2]\",\n    \"state\": \"[STATE]\",\n    \"zip\": \"12345\"\n  },\n  \"deliveryAddress\": {\n    \"address1\": \"[ADDRESS 1]\",\n    \"city\": \"[CITY]\",\n    \"country\": \"AE\",\n    \"name\": \"[NAME]\",\n    \"address2\": \"[ADDRESS 2]\",\n    \"state\": \"[STATE]\",\n    \"zip\": \"12345\"\n  },\n  \"branchId\": \"<long>\",\n  \"allowedPaymentMethods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"defaultPaymentMethod\": \"CARD\",\n  \"expiresIn\": 1440,\n  \"language\": \"EN\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"elapsed\": 12,\n  \"result\": {\n    \"id\": \"1653241101733169556\",\n    \"displayId\": \"QS3IM5\",\n    \"checkoutKey\": \"90ed4298f15d46df994fd1cfbbec5aa24390e811295cf8b5\",\n    \"requestId\": \"ORD-1234-r1\",\n    \"orderId\": \"ORD-1234\",\n    \"currency\": \"USD\",\n    \"amount\": 1499.99,\n    \"cashAmount\": 0,\n    \"status\": \"Pending\",\n    \"totalRefunded\": 0,\n    \"redirectUrl\": \"https://pay.test.paymennt.com/checkout/7a3ce540effe3c9a568a577d1f717e5267e73dc503663d4f\",\n    \"usedPaymentMethod\": \"Card\",\n    \"customer\": {},\n    \"subscriptionId\": \"1619465605181100275\",\n    \"billingAddress\": {\n      \"address1\": \"[ADDRESS 1]\",\n      \"city\": \"[CITY]\",\n      \"country\": \"AE\",\n      \"name\": \"[NAME]\",\n      \"address2\": \"[ADDRESS 2]\",\n      \"state\": \"[STATE]\",\n      \"zip\": \"12345\"\n    },\n    \"deliveryAddress\": {\n      \"address1\": \"[ADDRESS 1]\",\n      \"city\": \"[CITY]\",\n      \"country\": \"AE\",\n      \"name\": \"[NAME]\",\n      \"address2\": \"[ADDRESS 2]\",\n      \"state\": \"[STATE]\",\n      \"zip\": \"12345\"\n    },\n    \"firebaseCollection\": \"string\",\n    \"firebaseDatabase\": \"pc-test-734bc\",\n    \"firebaseDocument\": \"string\",\n    \"timestamp\": \"2022-02-23T06:14:30.132Z\",\n    \"branchId\": \"1601731695315563241\",\n    \"branchName\": \"Test store\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "daa9617d-1795-4e6b-9bc3-cd1c3c43841c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    "link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"currency\": \"AED\",\n  \"description\": \"<string>\",\n  \"orderId\": \"CHK-100000214\",\n  \"requestId\": \"CHK-100000214-r1\",\n  \"totals\": {\n    \"subtotal\": 100,\n    \"tax\": 5,\n    \"shipping\": 3,\n    \"handling\": 2,\n    \"discount\": 10,\n    \"skipTotalsValidation\": false\n  },\n  \"items\": [\n    {\n      \"linetotal\": 100,\n      \"name\": \"Dark grey sunglasses\",\n      \"quantity\": 2,\n      \"sku\": \"1116521\",\n      \"unitprice\": 50\n    },\n    {\n      \"linetotal\": 100,\n      \"name\": \"Dark grey sunglasses\",\n      \"quantity\": 2,\n      \"sku\": \"1116521\",\n      \"unitprice\": 50\n    }\n  ],\n  \"sendSms\": true,\n  \"sendEmail\": true,\n  \"customer\": {\n    \"email\": \"[CUSTOMER EMAIL]\",\n    \"firstName\": \"[First name]\",\n    \"lastName\": \"[Last name]\",\n    \"id\": \"123456\",\n    \"phone\": \"[CUSTOMER PHONE]\"\n  },\n  \"billingAddress\": {\n    \"address1\": \"[ADDRESS 1]\",\n    \"city\": \"[CITY]\",\n    \"country\": \"AE\",\n    \"name\": \"[NAME]\",\n    \"address2\": \"[ADDRESS 2]\",\n    \"state\": \"[STATE]\",\n    \"zip\": \"12345\"\n  },\n  \"deliveryAddress\": {\n    \"address1\": \"[ADDRESS 1]\",\n    \"city\": \"[CITY]\",\n    \"country\": \"AE\",\n    \"name\": \"[NAME]\",\n    \"address2\": \"[ADDRESS 2]\",\n    \"state\": \"[STATE]\",\n    \"zip\": \"12345\"\n  },\n  \"branchId\": \"<long>\",\n  \"allowedPaymentMethods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"defaultPaymentMethod\": \"CARD\",\n  \"expiresIn\": 1440,\n  \"language\": \"EN\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"elapsed\": 3,\n  \"error\": \"Checkout not found for API merchant\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f202a1f6-babf-4363-80bd-8e6e38b3b321",
+          "name": "Create QR checkout",
+          "request": {
+            "name": "Create QR checkout",
+            "description": {},
+            "url": {
+              "path": [
+                "checkout",
+                "qr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"orderId\": \"<string>\",\n  \"requestId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"deviceReference\": \"<string>\",\n  \"qrSize\": 300,\n  \"totals\": {\n    \"subtotal\": \"<number>\",\n    \"tax\": \"<number>\",\n    \"shipping\": \"<number>\",\n    \"handling\": \"<number>\",\n    \"discount\": \"<number>\",\n    \"skipTotalsValidation\": true\n  },\n  \"items\": [\n    {\n      \"linetotal\": \"<number>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"sku\": \"<string>\",\n      \"unitprice\": \"<number>\"\n    },\n    {\n      \"linetotal\": \"<number>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"sku\": \"<string>\",\n      \"unitprice\": \"<number>\"\n    }\n  ],\n  \"customer\": {\n    \"email\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"id\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"billingAddress\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"branchId\": \"<long>\",\n  \"allowedPaymentMethods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"defaultPaymentMethod\": \"<string>\",\n  \"language\": \"<string>\",\n  \"expiresIn\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "505e88a8-0fb1-4dc9-9714-243f866158f5",
+              "name": "Checkout details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    "qr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"currency\": \"AED\",\n  \"orderId\": \"CHK-100000214\",\n  \"requestId\": \"CHK-100000214-r1\",\n  \"description\": \"<string>\",\n  \"deviceReference\": \"<string>\",\n  \"qrSize\": 600,\n  \"totals\": {\n    \"subtotal\": 100,\n    \"tax\": 5,\n    \"shipping\": 3,\n    \"handling\": 2,\n    \"discount\": 10,\n    \"skipTotalsValidation\": false\n  },\n  \"items\": [\n    {\n      \"linetotal\": 100,\n      \"name\": \"Dark grey sunglasses\",\n      \"quantity\": 2,\n      \"sku\": \"1116521\",\n      \"unitprice\": 50\n    },\n    {\n      \"linetotal\": 100,\n      \"name\": \"Dark grey sunglasses\",\n      \"quantity\": 2,\n      \"sku\": \"1116521\",\n      \"unitprice\": 50\n    }\n  ],\n  \"customer\": {\n    \"email\": \"[CUSTOMER EMAIL]\",\n    \"firstName\": \"[First name]\",\n    \"lastName\": \"[Last name]\",\n    \"id\": \"123456\",\n    \"phone\": \"[CUSTOMER PHONE]\"\n  },\n  \"billingAddress\": {\n    \"address1\": \"[ADDRESS 1]\",\n    \"city\": \"[CITY]\",\n    \"country\": \"AE\",\n    \"name\": \"[NAME]\",\n    \"address2\": \"[ADDRESS 2]\",\n    \"state\": \"[STATE]\",\n    \"zip\": \"12345\"\n  },\n  \"branchId\": \"<long>\",\n  \"allowedPaymentMethods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"defaultPaymentMethod\": \"CARD\",\n  \"language\": \"EN\",\n  \"expiresIn\": 1440\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"elapsed\": 12,\n  \"result\": {\n    \"id\": \"1653241101733169556\",\n    \"displayId\": \"QS3IM5\",\n    \"checkoutKey\": \"90ed4298f15d46df994fd1cfbbec5aa24390e811295cf8b5\",\n    \"requestId\": \"ORD-1234-r1\",\n    \"orderId\": \"ORD-1234\",\n    \"currency\": \"USD\",\n    \"amount\": 1499.99,\n    \"cashAmount\": 0,\n    \"status\": \"Cancelled\",\n    \"totalRefunded\": 0,\n    \"redirectUrl\": \"https://pay.test.paymennt.com/checkout/7a3ce540effe3c9a568a577d1f717e5267e73dc503663d4f\",\n    \"usedPaymentMethod\": \"ZainCash\",\n    \"base64QR\": \"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gAUsYAELWMACFrCABSxgAatHZi6OBEKkqk+J27Qu+y3X5wELWMCy34AFLA0fWMACFrCABSxgAQtYwLLfgJWxIljSxspdmavzySJSlTXSSS/SiRpYwAIWsIAFLGABC1jAAhawgAUsYAELWMACVkawou/gSONN5arwREIn+neOfixEAr82Mz8DC1jAAhawgAUsYAELWMACFrCABSxgAQtYucAqsfIQqdISadwns3inbJ8Xqb1EPc6BBSxgAQtYwAIWsIAFLGABC1jAAhawgAWsngWrxI0VvZpYl3HCSpycIzqe0bc9sIAFLGABC1jAAhawgAUsYAELWMACFrCABawaJdJkBiVWlkqEI9IYWVVAFB1AYAELWMACFrCABSxgAQtYwAIWsIAFLGABC1gFVC1yVTKiTxARCcVI2y/XSSpSN6sqTuhdPfaABSxgAQtYwAIWsIAFLGABC1jAAhawgAWsXgUrevUv1w7JdYCUWCWMPiZYpJN39GonsIAFLGABC1jAAhawgAUsYAELWMACFrCABayK4Ihefcl1UFcBavTqbvQTSIlVTDM/AwtYwAIWsIAFLGABC1jAAhawgAUsYAELWMCq1ThNkbZfru8SHcVIJ8dI6xHhCQFgAQtYwAIWsIAFLGABC1jAAhawgAUsYAELWD0MVhUNPxdsERpvJ/Zb9PYXaRv03HhYwAIWsIAFLGABC1jAAhawgAUsYAELWMACVnSwqmio0XdwpBNDrgM4elefEiuH0bcVsIAFLGABC1jAAhawgAUsYAELWMACFrCABawuVGkijeMTfTbeSFWzSCezEscdK7FSGjXAAhawgAUsYAELWMACFrCABSxgAQtYwAJWT4AlIgIsERFgiQiwRESAJSICLBEBlogIsEQEWCIiwBIRAZaIAEtEBFgiIsASEWCJiABLRARYIgIsEZEg+TdqxKkY1UvgRgAAAABJRU5ErkJggg==\",\n    \"customer\": {},\n    \"billingAddress\": {\n      \"address1\": \"[ADDRESS 1]\",\n      \"city\": \"[CITY]\",\n      \"country\": \"AE\",\n      \"name\": \"[NAME]\",\n      \"address2\": \"[ADDRESS 2]\",\n      \"state\": \"[STATE]\",\n      \"zip\": \"12345\"\n    },\n    \"deliveryAddress\": {\n      \"address1\": \"[ADDRESS 1]\",\n      \"city\": \"[CITY]\",\n      \"country\": \"AE\",\n      \"name\": \"[NAME]\",\n      \"address2\": \"[ADDRESS 2]\",\n      \"state\": \"[STATE]\",\n      \"zip\": \"12345\"\n    },\n    \"firebaseCollection\": \"string\",\n    \"firebaseDatabase\": \"pc-test-734bc\",\n    \"firebaseDocument\": \"string\",\n    \"timestamp\": \"1967-09-24T01:30:58.817Z\",\n    \"branchId\": \"1601731695315563241\",\n    \"branchName\": \"Test store\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "088758a2-bb24-45cb-8886-e2502740c531",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    "qr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"currency\": \"AED\",\n  \"orderId\": \"CHK-100000214\",\n  \"requestId\": \"CHK-100000214-r1\",\n  \"description\": \"<string>\",\n  \"deviceReference\": \"<string>\",\n  \"qrSize\": 600,\n  \"totals\": {\n    \"subtotal\": 100,\n    \"tax\": 5,\n    \"shipping\": 3,\n    \"handling\": 2,\n    \"discount\": 10,\n    \"skipTotalsValidation\": false\n  },\n  \"items\": [\n    {\n      \"linetotal\": 100,\n      \"name\": \"Dark grey sunglasses\",\n      \"quantity\": 2,\n      \"sku\": \"1116521\",\n      \"unitprice\": 50\n    },\n    {\n      \"linetotal\": 100,\n      \"name\": \"Dark grey sunglasses\",\n      \"quantity\": 2,\n      \"sku\": \"1116521\",\n      \"unitprice\": 50\n    }\n  ],\n  \"customer\": {\n    \"email\": \"[CUSTOMER EMAIL]\",\n    \"firstName\": \"[First name]\",\n    \"lastName\": \"[Last name]\",\n    \"id\": \"123456\",\n    \"phone\": \"[CUSTOMER PHONE]\"\n  },\n  \"billingAddress\": {\n    \"address1\": \"[ADDRESS 1]\",\n    \"city\": \"[CITY]\",\n    \"country\": \"AE\",\n    \"name\": \"[NAME]\",\n    \"address2\": \"[ADDRESS 2]\",\n    \"state\": \"[STATE]\",\n    \"zip\": \"12345\"\n  },\n  \"branchId\": \"<long>\",\n  \"allowedPaymentMethods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"defaultPaymentMethod\": \"CARD\",\n  \"language\": \"EN\",\n  \"expiresIn\": 1440\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"elapsed\": 3,\n  \"error\": \"Checkout not found for API merchant\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "029cb16e-6e3c-4a7b-b8cf-c62ba2cfb732",
+          "name": "Create mobile checkout",
+          "request": {
+            "name": "Create mobile checkout",
+            "description": {},
+            "url": {
+              "path": [
+                "checkout",
+                "mobile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<number>\",\n  \"billingAddress\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"currency\": \"<string>\",\n  \"customer\": {\n    \"email\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"id\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"items\": [\n    {\n      \"linetotal\": \"<number>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"sku\": \"<string>\",\n      \"unitprice\": \"<number>\"\n    },\n    {\n      \"linetotal\": \"<number>\",\n      \"name\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"sku\": \"<string>\",\n      \"unitprice\": \"<number>\"\n    }\n  ],\n  \"orderId\": \"<string>\",\n  \"requestId\": \"<string>\",\n  \"totals\": {\n    \"subtotal\": \"<number>\",\n    \"tax\": \"<number>\",\n    \"shipping\": \"<number>\",\n    \"handling\": \"<number>\",\n    \"discount\": \"<number>\",\n    \"skipTotalsValidation\": true\n  },\n  \"deliveryAddress\": {\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"branchId\": \"<long>\",\n  \"allowedPaymentMethods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"defaultPaymentMethod\": \"<string>\",\n  \"language\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "064d401b-f417-421e-8e27-6436b1c7cddd",
+              "name": "Checkout details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    "mobile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"billingAddress\": {\n    \"address1\": \"[ADDRESS 1]\",\n    \"city\": \"[CITY]\",\n    \"country\": \"AE\",\n    \"name\": \"[NAME]\",\n    \"address2\": \"[ADDRESS 2]\",\n    \"state\": \"[STATE]\",\n    \"zip\": \"12345\"\n  },\n  \"currency\": \"AED\",\n  \"customer\": {\n    \"email\": \"[CUSTOMER EMAIL]\",\n    \"firstName\": \"[First name]\",\n    \"lastName\": \"[Last name]\",\n    \"id\": \"123456\",\n    \"phone\": \"[CUSTOMER PHONE]\"\n  },\n  \"items\": [\n    {\n      \"linetotal\": 100,\n      \"name\": \"Dark grey sunglasses\",\n      \"quantity\": 2,\n      \"sku\": \"1116521\",\n      \"unitprice\": 50\n    },\n    {\n      \"linetotal\": 100,\n      \"name\": \"Dark grey sunglasses\",\n      \"quantity\": 2,\n      \"sku\": \"1116521\",\n      \"unitprice\": 50\n    }\n  ],\n  \"orderId\": \"CHK-100000214\",\n  \"requestId\": \"CHK-100000214-r1\",\n  \"totals\": {\n    \"subtotal\": 100,\n    \"tax\": 5,\n    \"shipping\": 3,\n    \"handling\": 2,\n    \"discount\": 10,\n    \"skipTotalsValidation\": false\n  },\n  \"deliveryAddress\": {\n    \"address1\": \"[ADDRESS 1]\",\n    \"city\": \"[CITY]\",\n    \"country\": \"AE\",\n    \"name\": \"[NAME]\",\n    \"address2\": \"[ADDRESS 2]\",\n    \"state\": \"[STATE]\",\n    \"zip\": \"12345\"\n  },\n  \"branchId\": \"<long>\",\n  \"allowedPaymentMethods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"defaultPaymentMethod\": \"CARD\",\n  \"language\": \"EN\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"elapsed\": 12,\n  \"result\": {\n    \"id\": \"1653241101733169556\",\n    \"displayId\": \"QS3IM5\",\n    \"checkoutKey\": \"90ed4298f15d46df994fd1cfbbec5aa24390e811295cf8b5\",\n    \"requestId\": \"ORD-1234-r1\",\n    \"orderId\": \"ORD-1234\",\n    \"currency\": \"USD\",\n    \"amount\": 1499.99,\n    \"cashAmount\": 0,\n    \"status\": \"Expired\",\n    \"totalRefunded\": 0,\n    \"redirectUrl\": \"https://pay.test.paymennt.com/checkout/7a3ce540effe3c9a568a577d1f717e5267e73dc503663d4f\",\n    \"usedPaymentMethod\": \"PointCheckout\",\n    \"customer\": {},\n    \"billingAddress\": {\n      \"address1\": \"[ADDRESS 1]\",\n      \"city\": \"[CITY]\",\n      \"country\": \"AE\",\n      \"name\": \"[NAME]\",\n      \"address2\": \"[ADDRESS 2]\",\n      \"state\": \"[STATE]\",\n      \"zip\": \"12345\"\n    },\n    \"deliveryAddress\": {\n      \"address1\": \"[ADDRESS 1]\",\n      \"city\": \"[CITY]\",\n      \"country\": \"AE\",\n      \"name\": \"[NAME]\",\n      \"address2\": \"[ADDRESS 2]\",\n      \"state\": \"[STATE]\",\n      \"zip\": \"12345\"\n    },\n    \"firebaseCollection\": \"string\",\n    \"firebaseDatabase\": \"pc-test-734bc\",\n    \"firebaseDocument\": \"string\",\n    \"timestamp\": \"1952-02-15T01:18:55.716Z\",\n    \"branchId\": \"1601731695315563241\",\n    \"branchName\": \"Test store\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "600baf6e-4449-4666-bb9d-d87bb9404cef",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    "mobile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"billingAddress\": {\n    \"address1\": \"[ADDRESS 1]\",\n    \"city\": \"[CITY]\",\n    \"country\": \"AE\",\n    \"name\": \"[NAME]\",\n    \"address2\": \"[ADDRESS 2]\",\n    \"state\": \"[STATE]\",\n    \"zip\": \"12345\"\n  },\n  \"currency\": \"AED\",\n  \"customer\": {\n    \"email\": \"[CUSTOMER EMAIL]\",\n    \"firstName\": \"[First name]\",\n    \"lastName\": \"[Last name]\",\n    \"id\": \"123456\",\n    \"phone\": \"[CUSTOMER PHONE]\"\n  },\n  \"items\": [\n    {\n      \"linetotal\": 100,\n      \"name\": \"Dark grey sunglasses\",\n      \"quantity\": 2,\n      \"sku\": \"1116521\",\n      \"unitprice\": 50\n    },\n    {\n      \"linetotal\": 100,\n      \"name\": \"Dark grey sunglasses\",\n      \"quantity\": 2,\n      \"sku\": \"1116521\",\n      \"unitprice\": 50\n    }\n  ],\n  \"orderId\": \"CHK-100000214\",\n  \"requestId\": \"CHK-100000214-r1\",\n  \"totals\": {\n    \"subtotal\": 100,\n    \"tax\": 5,\n    \"shipping\": 3,\n    \"handling\": 2,\n    \"discount\": 10,\n    \"skipTotalsValidation\": false\n  },\n  \"deliveryAddress\": {\n    \"address1\": \"[ADDRESS 1]\",\n    \"city\": \"[CITY]\",\n    \"country\": \"AE\",\n    \"name\": \"[NAME]\",\n    \"address2\": \"[ADDRESS 2]\",\n    \"state\": \"[STATE]\",\n    \"zip\": \"12345\"\n  },\n  \"branchId\": \"<long>\",\n  \"allowedPaymentMethods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"defaultPaymentMethod\": \"CARD\",\n  \"language\": \"EN\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"elapsed\": 3,\n  \"error\": \"Checkout not found for API merchant\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18dada9b-2f30-4ff3-9998-becf43ae3b72",
+          "name": "Search checkouts",
+          "request": {
+            "name": "Search checkouts",
+            "description": {},
+            "url": {
+              "path": [
+                "checkout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "query by checkout type"
+                },
+                {
+                  "disabled": false,
+                  "key": "requestId",
+                  "value": "<string>",
+                  "description": "query by requestId used when submitting checkout"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderId",
+                  "value": "<string>",
+                  "description": "query by orderId associated with checkout"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "comma separated list of checkout statuses"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "comma separated list of checkout statuses"
+                },
+                {
+                  "disabled": false,
+                  "key": "customer.reference",
+                  "value": "<string>",
+                  "description": "query by customer reference Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "customer.email",
+                  "value": "<string>",
+                  "description": "query by customer email"
+                },
+                {
+                  "disabled": false,
+                  "key": "customer.phone",
+                  "value": "<string>",
+                  "description": "query by customer phone number"
+                },
+                {
+                  "disabled": false,
+                  "key": "afterId",
+                  "value": "<integer>",
+                  "description": "filter checkouts after the provided id"
+                },
+                {
+                  "disabled": false,
+                  "key": "afterTimestamp",
+                  "value": "<string>",
+                  "description": "query checkouts created after specific date/time, date format is `yyyy-mm-dd HH:MM:SS`"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>",
+                  "description": "page number, default is 0"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<number>",
+                  "description": "page size, default is 20"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0151689f-73d4-44fc-8a91-fbd36f381fe5",
+              "name": "List of checkouts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "requestId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer.reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer.email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer.phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "afterId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "afterTimestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"elapsed\": 12,\n  \"result\": {\n    \"page\": 0,\n    \"size\": 10,\n    \"totalPages\": 1,\n    \"totalElements\": 7,\n    \"content\": [\n      {\n        \"id\": \"1653241101733169556\",\n        \"displayId\": \"QS3IM5\",\n        \"requestId\": \"ORD-1234-r1\",\n        \"orderId\": \"ORD-1234\",\n        \"currency\": \"USD\",\n        \"amount\": 1499.99,\n        \"cashAmount\": 0,\n        \"branchId\": \"1601731695315563241\",\n        \"branchName\": \"Test store\",\n        \"status\": \"Partially refunded\",\n        \"totalRefunded\": 0,\n        \"redirectUrl\": \"https://pay.test.paymennt.com/checkout/7a3ce540effe3c9a568a577d1f717e5267e73dc503663d4f\",\n        \"usedPaymentMethod\": \"ZainCash\",\n        \"customer\": {},\n        \"billingAddress\": {\n          \"address1\": \"[ADDRESS 1]\",\n          \"city\": \"[CITY]\",\n          \"country\": \"AE\",\n          \"name\": \"[NAME]\",\n          \"address2\": \"[ADDRESS 2]\",\n          \"state\": \"[STATE]\",\n          \"zip\": \"12345\"\n        },\n        \"deliveryAddress\": {\n          \"address1\": \"[ADDRESS 1]\",\n          \"city\": \"[CITY]\",\n          \"country\": \"AE\",\n          \"name\": \"[NAME]\",\n          \"address2\": \"[ADDRESS 2]\",\n          \"state\": \"[STATE]\",\n          \"zip\": \"12345\"\n        },\n        \"firebaseDatabase\": \"pc-test-734bc\",\n        \"firebaseCollection\": \"string\",\n        \"firebaseDocument\": \"string\",\n        \"timestamp\": \"1981-12-08T14:43:38.866Z\",\n        \"checkoutKey\": \"90ed4298f15d46df994fd1cfbbec5aa24390e811295cf8b5\"\n      },\n      {\n        \"id\": \"1653241101733169556\",\n        \"displayId\": \"QS3IM5\",\n        \"requestId\": \"ORD-1234-r1\",\n        \"orderId\": \"ORD-1234\",\n        \"currency\": \"USD\",\n        \"amount\": 1499.99,\n        \"cashAmount\": 0,\n        \"branchId\": \"1601731695315563241\",\n        \"branchName\": \"Test store\",\n        \"status\": \"Cancelled\",\n        \"totalRefunded\": 0,\n        \"redirectUrl\": \"https://pay.test.paymennt.com/checkout/7a3ce540effe3c9a568a577d1f717e5267e73dc503663d4f\",\n        \"usedPaymentMethod\": \"ZainCash\",\n        \"customer\": {},\n        \"billingAddress\": {\n          \"address1\": \"[ADDRESS 1]\",\n          \"city\": \"[CITY]\",\n          \"country\": \"AE\",\n          \"name\": \"[NAME]\",\n          \"address2\": \"[ADDRESS 2]\",\n          \"state\": \"[STATE]\",\n          \"zip\": \"12345\"\n        },\n        \"deliveryAddress\": {\n          \"address1\": \"[ADDRESS 1]\",\n          \"city\": \"[CITY]\",\n          \"country\": \"AE\",\n          \"name\": \"[NAME]\",\n          \"address2\": \"[ADDRESS 2]\",\n          \"state\": \"[STATE]\",\n          \"zip\": \"12345\"\n        },\n        \"firebaseDatabase\": \"pc-test-734bc\",\n        \"firebaseCollection\": \"string\",\n        \"firebaseDocument\": \"string\",\n        \"timestamp\": \"1987-09-02T23:02:06.540Z\",\n        \"checkoutKey\": \"90ed4298f15d46df994fd1cfbbec5aa24390e811295cf8b5\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a2fbdc1-225f-43f2-8882-053d142fc913",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "requestId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer.reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer.email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer.phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "afterId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "afterTimestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"elapsed\": 3,\n  \"error\": \"page size parameter must be a positive integer\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5bca5f50-e02b-45af-ae36-97f4ba330714",
+          "name": "Get checkout by Id",
+          "request": {
+            "name": "Get checkout by Id",
+            "description": {},
+            "url": {
+              "path": [
+                "checkout",
+                ":checkoutId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "checkoutId",
+                  "description": "(Required) Checkout Id retrieved from paymennt.com API."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d8b29b5-e3d1-4a3d-92a8-92d741d626df",
+              "name": "Get Checkout by ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    ":checkoutId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "checkoutId",
+                      "description": "(Required) Checkout Id retrieved from paymennt.com API."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"elapsed\": 12,\n  \"result\": {\n    \"id\": \"1653241101733169556\",\n    \"displayId\": \"QS3IM5\",\n    \"requestId\": \"ORD-1234-r1\",\n    \"orderId\": \"ORD-1234\",\n    \"currency\": \"USD\",\n    \"amount\": 1499.99,\n    \"cashAmount\": 0,\n    \"branchId\": \"1601731695315563241\",\n    \"branchName\": \"Test store\",\n    \"status\": \"Cancelled\",\n    \"totalRefunded\": 0,\n    \"redirectUrl\": \"https://pay.test.paymennt.com/checkout/7a3ce540effe3c9a568a577d1f717e5267e73dc503663d4f\",\n    \"usedPaymentMethod\": \"Cash\",\n    \"customer\": {},\n    \"billingAddress\": {\n      \"address1\": \"[ADDRESS 1]\",\n      \"city\": \"[CITY]\",\n      \"country\": \"AE\",\n      \"name\": \"[NAME]\",\n      \"address2\": \"[ADDRESS 2]\",\n      \"state\": \"[STATE]\",\n      \"zip\": \"12345\"\n    },\n    \"deliveryAddress\": {\n      \"address1\": \"[ADDRESS 1]\",\n      \"city\": \"[CITY]\",\n      \"country\": \"AE\",\n      \"name\": \"[NAME]\",\n      \"address2\": \"[ADDRESS 2]\",\n      \"state\": \"[STATE]\",\n      \"zip\": \"12345\"\n    },\n    \"firebaseDatabase\": \"pc-test-734bc\",\n    \"firebaseCollection\": \"string\",\n    \"firebaseDocument\": \"string\",\n    \"timestamp\": \"2010-03-08T05:50:28.008Z\",\n    \"checkoutKey\": \"90ed4298f15d46df994fd1cfbbec5aa24390e811295cf8b5\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db8b182d-968f-4974-aa12-3a32a0ece361",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    ":checkoutId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "checkoutId",
+                      "description": "(Required) Checkout Id retrieved from paymennt.com API."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"elapsed\": 3,\n  \"error\": \"Checkout not found for API merchant\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46de6c6b-84c9-4f98-9877-517f86736c9b",
+          "name": "Cancel pending checkout",
+          "request": {
+            "name": "Cancel pending checkout",
+            "description": {},
+            "url": {
+              "path": [
+                "checkout",
+                ":checkoutId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "checkoutId",
+                  "description": "(Required) Checkout Id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c9ce5c57-b04d-49ec-a577-8bae45bb9a36",
+              "name": "Checkout was cancelled successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    ":checkoutId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "checkoutId",
+                      "description": "(Required) Checkout Id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"elapsed\": 12,\n  \"result\": {\n    \"id\": \"1653241101733169556\",\n    \"displayId\": \"QS3IM5\",\n    \"requestId\": \"ORD-1234-r1\",\n    \"orderId\": \"ORD-1234\",\n    \"currency\": \"USD\",\n    \"amount\": 1499.99,\n    \"cashAmount\": 0,\n    \"branchId\": \"1601731695315563241\",\n    \"branchName\": \"Test store\",\n    \"status\": \"Cancelled\",\n    \"totalRefunded\": 0,\n    \"redirectUrl\": \"https://pay.test.paymennt.com/checkout/7a3ce540effe3c9a568a577d1f717e5267e73dc503663d4f\",\n    \"usedPaymentMethod\": \"Cash\",\n    \"customer\": {},\n    \"billingAddress\": {\n      \"address1\": \"[ADDRESS 1]\",\n      \"city\": \"[CITY]\",\n      \"country\": \"AE\",\n      \"name\": \"[NAME]\",\n      \"address2\": \"[ADDRESS 2]\",\n      \"state\": \"[STATE]\",\n      \"zip\": \"12345\"\n    },\n    \"deliveryAddress\": {\n      \"address1\": \"[ADDRESS 1]\",\n      \"city\": \"[CITY]\",\n      \"country\": \"AE\",\n      \"name\": \"[NAME]\",\n      \"address2\": \"[ADDRESS 2]\",\n      \"state\": \"[STATE]\",\n      \"zip\": \"12345\"\n    },\n    \"firebaseDatabase\": \"pc-test-734bc\",\n    \"firebaseCollection\": \"string\",\n    \"firebaseDocument\": \"string\",\n    \"timestamp\": \"2010-03-08T05:50:28.008Z\",\n    \"checkoutKey\": \"90ed4298f15d46df994fd1cfbbec5aa24390e811295cf8b5\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a0a5630-3a35-4dbb-b843-2115af5c266c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    ":checkoutId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "checkoutId",
+                      "description": "(Required) Checkout Id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"elapsed\": 3,\n  \"error\": \"Checkout not found for API merchant\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb1c38d3-455c-4de8-a3e7-74888c241256",
+          "name": "Refund a checkout",
+          "request": {
+            "name": "Refund a checkout",
+            "description": {},
+            "url": {
+              "path": [
+                "checkout",
+                ":checkoutId",
+                "refund"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "(Required) Refun amount."
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) Currency ISO code."
+                },
+                {
+                  "disabled": false,
+                  "key": "note",
+                  "value": "<string>",
+                  "description": "(Required) Refund note."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "checkoutId",
+                  "description": "(Required) Checkout Id retrieved from paymennt.com API."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5cc93125-d784-4b38-9318-8f1c7b13fcb3",
+              "name": "Get Checkout by ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    ":checkoutId",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "amount",
+                      "value": "1500"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "note",
+                      "value": "Out of stock"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "checkoutId",
+                      "description": "(Required) Checkout Id retrieved from paymennt.com API."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"elapsed\": 12,\n  \"result\": {\n    \"id\": \"1653241101733169556\",\n    \"displayId\": \"QS3IM5\",\n    \"requestId\": \"ORD-1234-r1\",\n    \"orderId\": \"ORD-1234\",\n    \"currency\": \"USD\",\n    \"amount\": 1499.99,\n    \"cashAmount\": 0,\n    \"branchId\": \"1601731695315563241\",\n    \"branchName\": \"Test store\",\n    \"status\": \"Cancelled\",\n    \"totalRefunded\": 0,\n    \"redirectUrl\": \"https://pay.test.paymennt.com/checkout/7a3ce540effe3c9a568a577d1f717e5267e73dc503663d4f\",\n    \"usedPaymentMethod\": \"Cash\",\n    \"customer\": {},\n    \"billingAddress\": {\n      \"address1\": \"[ADDRESS 1]\",\n      \"city\": \"[CITY]\",\n      \"country\": \"AE\",\n      \"name\": \"[NAME]\",\n      \"address2\": \"[ADDRESS 2]\",\n      \"state\": \"[STATE]\",\n      \"zip\": \"12345\"\n    },\n    \"deliveryAddress\": {\n      \"address1\": \"[ADDRESS 1]\",\n      \"city\": \"[CITY]\",\n      \"country\": \"AE\",\n      \"name\": \"[NAME]\",\n      \"address2\": \"[ADDRESS 2]\",\n      \"state\": \"[STATE]\",\n      \"zip\": \"12345\"\n    },\n    \"firebaseDatabase\": \"pc-test-734bc\",\n    \"firebaseCollection\": \"string\",\n    \"firebaseDocument\": \"string\",\n    \"timestamp\": \"2010-03-08T05:50:28.008Z\",\n    \"checkoutKey\": \"90ed4298f15d46df994fd1cfbbec5aa24390e811295cf8b5\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f5cae09-5952-4832-9d9b-3b01114e5afd",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    ":checkoutId",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "amount",
+                      "value": "1500"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "USD"
+                    },
+                    {
+                      "key": "note",
+                      "value": "Out of stock"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "checkoutId",
+                      "description": "(Required) Checkout Id retrieved from paymennt.com API."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"elapsed\": 3,\n  \"error\": \"Checkout not found for API merchant\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.paymennt.com/mer/v2.0/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-PointCheckout-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "83b527aa-4f06-45ed-a310-48ac017298eb",
+    "name": "Merchant Branches Checkout API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "paymennt.com provides a collection of APIs that enable you to process and manage payments. Our APIs accept and return JSON in the HTTP body, and return standard HTTP response codes. You can consume the APIs directly using\n\nyour favorite HTTP/REST library or make use of one of our SDKs.\n\n# Introduction\n\nLearn how to integrate our APIs into your application\n\n### API Basics\n\nThe paymennt.com API gives you access to pretty much all the features you can use on our dashboard and lets you extend them for use in your application. It strives to be RESTful and is organized around the main resources you would be interacting with - with a few notable exceptions.\n\n### Requests and Response\n\nBoth request body data and response data are formatted as JSON. Content type for responses will always be `application/json`. Generally, all responses will be in the following format:\n\n```js title=\"/src/components/HelloCodeTitle.js\"\n{\n  \"success\": [boolean], // true indicates a successful operation\n  \"elapsed\": [number], // time spent server side processing the request\n  \"error\": [string], // if success is false, this will indicate the error\n  \"result\": [object] // the result of the operation\n}\n```",
+      "type": "text/plain"
+    }
+  }
+}

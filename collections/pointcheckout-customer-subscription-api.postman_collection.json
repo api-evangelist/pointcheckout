@@ -1,0 +1,1063 @@
+{
+  "item": [
+    {
+      "id": "15a50cba-8108-4cc1-94fa-1aedd33041bc",
+      "name": "Customer subscription",
+      "description": {
+        "content": "API endpoints for Customer subscription management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9dbcde36-5097-4ad0-9264-a8287bf2085e",
+          "name": "Search subscriptions",
+          "request": {
+            "name": "Search subscriptions",
+            "description": {},
+            "url": {
+              "path": [
+                "subscription"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "comma separated list of subscription statuses"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "comma separated list of subscription statuses"
+                },
+                {
+                  "disabled": false,
+                  "key": "customer.reference",
+                  "value": "<string>",
+                  "description": "query by customer reference Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "customer.email",
+                  "value": "<string>",
+                  "description": "query by customer email"
+                },
+                {
+                  "disabled": false,
+                  "key": "customer.phone",
+                  "value": "<string>",
+                  "description": "query by customer phone number"
+                },
+                {
+                  "disabled": false,
+                  "key": "afterId",
+                  "value": "<integer>",
+                  "description": "filter subscriptions after the provided id"
+                },
+                {
+                  "disabled": false,
+                  "key": "afterTimestamp",
+                  "value": "<string>",
+                  "description": "query subscriptions created after specific date/time, date format is `yyyy-mm-dd HH:MM:SS`"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>",
+                  "description": "page number, default is 0"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<number>",
+                  "description": "page size, default is 20"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "216fd77d-864c-480d-9b4d-3e30b779042a",
+              "name": "List of subscriptions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscription"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer.reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer.email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer.phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "afterId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "afterTimestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"elapsed\": 12,\n  \"result\": {\n    \"page\": 0,\n    \"size\": 10,\n    \"totalPages\": 1,\n    \"totalElements\": 7,\n    \"content\": [\n      {\n        \"id\": \"1653241101733169556\",\n        \"displayId\": \"QS3IM5\",\n        \"description\": \"dozen of cookies\",\n        \"currency\": \"USD\",\n        \"amount\": 1499.99,\n        \"status\": \"ACTIVE\",\n        \"customer\": {},\n        \"startDate\": \"2018-01-03\",\n        \"endDate\": \"1972-03-26\",\n        \"sendOnHour\": 3,\n        \"period\": 1,\n        \"periodUnit\": \"DAYS\"\n      },\n      {\n        \"id\": \"1653241101733169556\",\n        \"displayId\": \"QS3IM5\",\n        \"description\": \"dozen of cookies\",\n        \"currency\": \"USD\",\n        \"amount\": 1499.99,\n        \"status\": \"ACTIVE\",\n        \"customer\": {},\n        \"startDate\": \"2006-10-13\",\n        \"endDate\": \"2024-10-30\",\n        \"sendOnHour\": 3,\n        \"period\": 1,\n        \"periodUnit\": \"DAYS\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b82df7b-f318-4afa-b61a-f21670b14138",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscription"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer.reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer.email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer.phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "afterId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "afterTimestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"elapsed\": 3,\n  \"error\": \"page size parameter must be a positive integer\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "747326ee-ddcd-4cb6-9cff-1cc06e276cfb",
+          "name": "Create subscription",
+          "request": {
+            "name": "Create subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "subscription"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"sendEvery\": \"<string>\",\n  \"sendOnHour\": \"<integer>\",\n  \"startDate\": \"<date>\",\n  \"customer\": {\n    \"email\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"id\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"customerId\": \"<long>\",\n  \"endDate\": \"<date>\",\n  \"returnUrl\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c131aa73-0081-459d-b4c4-4523f41a7758",
+              "name": "Subscription details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscription"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 1499.99,\n  \"currency\": \"USD\",\n  \"description\": \"dozen of cookies\",\n  \"sendEvery\": \"TWO_MONTHS\",\n  \"sendOnHour\": 10,\n  \"startDate\": \"2021-08-10\",\n  \"customer\": {\n    \"email\": \"[CUSTOMER EMAIL]\",\n    \"firstName\": \"[First name]\",\n    \"lastName\": \"[Last name]\",\n    \"id\": \"123456\",\n    \"phone\": \"[CUSTOMER PHONE]\"\n  },\n  \"customerId\": \"<long>\",\n  \"endDate\": \"2024-05-01\",\n  \"returnUrl\": \"https://example.com/subscription/payment-check/\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"elapsed\": 12,\n  \"result\": {\n    \"id\": \"1653241101733169556\",\n    \"displayId\": \"QS3IM5\",\n    \"description\": \"dozen of cookies\",\n    \"currency\": \"USD\",\n    \"amount\": 1499.99,\n    \"status\": \"ACTIVE\",\n    \"customer\": {},\n    \"startDate\": \"1982-07-12\",\n    \"endDate\": \"1986-03-18\",\n    \"sendOnHour\": 3,\n    \"period\": 1,\n    \"periodUnit\": \"DAYS\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc74465d-1f83-4e76-bd46-53bc3953ca0f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscription"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 1499.99,\n  \"currency\": \"USD\",\n  \"description\": \"dozen of cookies\",\n  \"sendEvery\": \"TWO_MONTHS\",\n  \"sendOnHour\": 10,\n  \"startDate\": \"2021-08-10\",\n  \"customer\": {\n    \"email\": \"[CUSTOMER EMAIL]\",\n    \"firstName\": \"[First name]\",\n    \"lastName\": \"[Last name]\",\n    \"id\": \"123456\",\n    \"phone\": \"[CUSTOMER PHONE]\"\n  },\n  \"customerId\": \"<long>\",\n  \"endDate\": \"2024-05-01\",\n  \"returnUrl\": \"https://example.com/subscription/payment-check/\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"elapsed\": 3,\n  \"error\": \"Subscription not found for API merchant\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cdacc1c0-6985-4703-81b0-f3e40ac72cd8",
+          "name": "Get subscription by Id",
+          "request": {
+            "name": "Get subscription by Id",
+            "description": {},
+            "url": {
+              "path": [
+                "subscription",
+                ":subscriptionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription Id retrieved from paymennt.com API."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79c9d87c-e921-4ca8-ac1c-ee9ced39eb6a",
+              "name": "Get subscription by ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscription",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription Id retrieved from paymennt.com API."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"elapsed\": 12,\n  \"result\": {\n    \"id\": \"1653241101733169556\",\n    \"displayId\": \"QS3IM5\",\n    \"description\": \"dozen of cookies\",\n    \"currency\": \"USD\",\n    \"amount\": 1499.99,\n    \"status\": \"ACTIVE\",\n    \"customer\": {},\n    \"startDate\": \"1982-07-12\",\n    \"endDate\": \"1986-03-18\",\n    \"sendOnHour\": 3,\n    \"period\": 1,\n    \"periodUnit\": \"DAYS\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d14e4049-a6ff-4f39-96ed-b821d1cf3872",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscription",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription Id retrieved from paymennt.com API."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"elapsed\": 3,\n  \"error\": \"Subscription not found for API merchant\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23603814-d086-44a5-ba48-7024fa569202",
+          "name": "Pause subscription",
+          "request": {
+            "name": "Pause subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "subscription",
+                ":subscriptionId",
+                "pause"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription Id retrieved from paymennt.com API."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d0f1b91-662f-46de-9a9c-f21e524e608e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscription",
+                    ":subscriptionId",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription Id retrieved from paymennt.com API."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"elapsed\": 12,\n  \"result\": {\n    \"id\": \"1653241101733169556\",\n    \"displayId\": \"QS3IM5\",\n    \"description\": \"dozen of cookies\",\n    \"currency\": \"USD\",\n    \"amount\": 1499.99,\n    \"status\": \"ACTIVE\",\n    \"customer\": {},\n    \"startDate\": \"1982-07-12\",\n    \"endDate\": \"1986-03-18\",\n    \"sendOnHour\": 3,\n    \"period\": 1,\n    \"periodUnit\": \"DAYS\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b33e660a-8ede-42d4-96a6-079ae94169bb",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscription",
+                    ":subscriptionId",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription Id retrieved from paymennt.com API."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"elapsed\": 3,\n  \"error\": \"Subscription not found for API merchant\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8028050c-b9bd-4f4c-b616-8161a2953a08",
+          "name": "Resume subscription",
+          "request": {
+            "name": "Resume subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "subscription",
+                ":subscriptionId",
+                "resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription Id retrieved from paymennt.com API."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14c66cee-6d0a-45ff-912e-b023b93b7f9e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscription",
+                    ":subscriptionId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription Id retrieved from paymennt.com API."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"elapsed\": 12,\n  \"result\": {\n    \"id\": \"1653241101733169556\",\n    \"displayId\": \"QS3IM5\",\n    \"description\": \"dozen of cookies\",\n    \"currency\": \"USD\",\n    \"amount\": 1499.99,\n    \"status\": \"ACTIVE\",\n    \"customer\": {},\n    \"startDate\": \"1982-07-12\",\n    \"endDate\": \"1986-03-18\",\n    \"sendOnHour\": 3,\n    \"period\": 1,\n    \"periodUnit\": \"DAYS\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "449918ec-d9d4-4ed8-be72-76d3a0f9627e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscription",
+                    ":subscriptionId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription Id retrieved from paymennt.com API."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"elapsed\": 3,\n  \"error\": \"Subscription not found for API merchant\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "701a1e97-0a37-4e92-9302-daa8d810b718",
+          "name": "Get subscription payments",
+          "request": {
+            "name": "Get subscription payments",
+            "description": {},
+            "url": {
+              "path": [
+                "subscription",
+                ":subscriptionId",
+                "payment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>",
+                  "description": "page number, default is 0"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<number>",
+                  "description": "page size, default is 20"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) Subscription Id retrieved from paymennt.com API."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f70f4738-63a0-4415-88c7-263103852202",
+              "name": "Get subscription payments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscription",
+                    ":subscriptionId",
+                    "payment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription Id retrieved from paymennt.com API."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"elapsed\": 12,\n  \"result\": {\n    \"page\": 0,\n    \"size\": 10,\n    \"totalPages\": 1,\n    \"totalElements\": 7,\n    \"content\": [\n      {\n        \"id\": \"1653241101733169556\",\n        \"displayId\": \"QS3IM5\",\n        \"checkout\": {\n          \"id\": \"1653241101733169556\",\n          \"displayId\": \"QS3IM5\",\n          \"checkoutKey\": \"90ed4298f15d46df994fd1cfbbec5aa24390e811295cf8b5\",\n          \"requestId\": \"ORD-1234-r1\",\n          \"orderId\": \"ORD-1234\",\n          \"currency\": \"USD\",\n          \"amount\": 1499.99,\n          \"cashAmount\": 0,\n          \"status\": \"Partially refunded\",\n          \"totalRefunded\": 0,\n          \"redirectUrl\": \"https://pay.test.paymennt.com/checkout/7a3ce540effe3c9a568a577d1f717e5267e73dc503663d4f\",\n          \"usedPaymentMethod\": \"Cash\",\n          \"customer\": {},\n          \"subscriptionId\": \"1619465605181100275\",\n          \"billingAddress\": {\n            \"address1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"zip\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"deliveryAddress\": {\n            \"address1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"zip\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"firebaseCollection\": \"string\",\n          \"firebaseDatabase\": \"pc-test-734bc\",\n          \"firebaseDocument\": \"string\",\n          \"timestamp\": \"1963-01-07T02:16:51.143Z\",\n          \"branchId\": \"1601731695315563241\",\n          \"branchName\": \"Test store\"\n        },\n        \"timestamp\": \"1951-02-08T18:17:37.083Z\",\n        \"cancelled\": true\n      },\n      {\n        \"id\": \"1653241101733169556\",\n        \"displayId\": \"QS3IM5\",\n        \"checkout\": {\n          \"id\": \"1653241101733169556\",\n          \"displayId\": \"QS3IM5\",\n          \"checkoutKey\": \"90ed4298f15d46df994fd1cfbbec5aa24390e811295cf8b5\",\n          \"requestId\": \"ORD-1234-r1\",\n          \"orderId\": \"ORD-1234\",\n          \"currency\": \"USD\",\n          \"amount\": 1499.99,\n          \"cashAmount\": 0,\n          \"status\": \"Paid\",\n          \"totalRefunded\": 0,\n          \"redirectUrl\": \"https://pay.test.paymennt.com/checkout/7a3ce540effe3c9a568a577d1f717e5267e73dc503663d4f\",\n          \"usedPaymentMethod\": \"PointCheckout\",\n          \"customer\": {},\n          \"subscriptionId\": \"1619465605181100275\",\n          \"billingAddress\": {\n            \"address1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"zip\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"deliveryAddress\": {\n            \"address1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"zip\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"firebaseCollection\": \"string\",\n          \"firebaseDatabase\": \"pc-test-734bc\",\n          \"firebaseDocument\": \"string\",\n          \"timestamp\": \"1978-04-30T05:29:08.588Z\",\n          \"branchId\": \"1601731695315563241\",\n          \"branchName\": \"Test store\"\n        },\n        \"timestamp\": \"1961-09-03T10:34:51.198Z\",\n        \"cancelled\": false\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57c60e0d-dd1b-4ad8-bc3d-81d2bcf5da34",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscription",
+                    ":subscriptionId",
+                    "payment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) Subscription Id retrieved from paymennt.com API."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-PointCheckout-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"elapsed\": 3,\n  \"error\": \"page size parameter must be a positive integer\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.paymennt.com/mer/v2.0/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-PointCheckout-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6eee1762-8ea8-4f19-a62a-3a9e871e151b",
+    "name": "Merchant Branches Customer subscription API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "paymennt.com provides a collection of APIs that enable you to process and manage payments. Our APIs accept and return JSON in the HTTP body, and return standard HTTP response codes. You can consume the APIs directly using\n\nyour favorite HTTP/REST library or make use of one of our SDKs.\n\n# Introduction\n\nLearn how to integrate our APIs into your application\n\n### API Basics\n\nThe paymennt.com API gives you access to pretty much all the features you can use on our dashboard and lets you extend them for use in your application. It strives to be RESTful and is organized around the main resources you would be interacting with - with a few notable exceptions.\n\n### Requests and Response\n\nBoth request body data and response data are formatted as JSON. Content type for responses will always be `application/json`. Generally, all responses will be in the following format:\n\n```js title=\"/src/components/HelloCodeTitle.js\"\n{\n  \"success\": [boolean], // true indicates a successful operation\n  \"elapsed\": [number], // time spent server side processing the request\n  \"error\": [string], // if success is false, this will indicate the error\n  \"result\": [object] // the result of the operation\n}\n```",
+      "type": "text/plain"
+    }
+  }
+}

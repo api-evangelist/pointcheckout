@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Merchant Branches API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-PointCheckout-Api-Key",
+      "value": "{{X-PointCheckout-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Branches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get branch by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.paymennt.com/mer/v2.0/branches/:branchId",
+            "params": [
+              {
+                "name": "branchId",
+                "value": "",
+                "type": "path",
+                "description": "Branch Id."
+              }
+            ]
+          },
+          "docs": "Get branch by Id"
+        },
+        {
+          "info": {
+            "name": "Get branches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.paymennt.com/mer/v2.0/branches",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number, default is 0"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "page size, default is 20"
+              }
+            ]
+          },
+          "docs": "List all branches associated with merchant"
+        },
+        {
+          "info": {
+            "name": "Create new branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/branches",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new branch"
+        },
+        {
+          "info": {
+            "name": "Disable branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/branches/:branchId/disable",
+            "params": [
+              {
+                "name": "branchId",
+                "value": "",
+                "type": "path",
+                "description": "Branch Id."
+              }
+            ]
+          },
+          "docs": "Disable branch"
+        },
+        {
+          "info": {
+            "name": "Enable branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.paymennt.com/mer/v2.0/branches/:branchId/enable",
+            "params": [
+              {
+                "name": "branchId",
+                "value": "",
+                "type": "path",
+                "description": "Branch Id."
+              }
+            ]
+          },
+          "docs": "Enable branch"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
