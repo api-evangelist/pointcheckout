@@ -37,6 +37,16 @@ tags:
 - Company
 - Payments
 - Checkout
+- Subscription
+- Rewards
+- Loyalty
+- Webhook
+- MENA
+- E-Commerce
+tags_raw:
+- Company
+- Payments
+- Checkout
 - Subscriptions
 - Rewards
 - Loyalty
@@ -80,6 +90,8 @@ apis:
   humanURL: https://docs.pointcheckout.com/api/
   baseURL: https://api.paymennt.com/mer/v2.0/
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
