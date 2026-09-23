@@ -1,10 +1,7 @@
 {
   "provider": "pointcheckout",
   "sources": [
-    "pointcheckout-branches-api-openapi.yml",
-    "pointcheckout-checkout-api-openapi.yml",
-    "pointcheckout-customer-subscription-api-openapi.yml",
-    "pointcheckout-webhooks-api-openapi.yml"
+    "_original/pointcheckout-merchant-api-openapi.yml"
   ],
   "outputs": [
     "pointcheckout-branches-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "pointcheckout-merchant-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "pointcheckout-branches-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pointcheckout-checkout-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pointcheckout-customer-subscription-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pointcheckout-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

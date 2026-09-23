@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Merchant Branches API
-  description: "paymennt.com provides a collection of APIs that enable you to process and manage payments. Our APIs accept and return JSON in the HTTP body, and return standard HTTP response codes. You can consume the APIs directly using\n\nyour favorite HTTP/REST library or make use of one of our SDKs.\n\n# Introduction\n\nLearn how to integrate our APIs into your application\n\n### API Basics\n\nThe paymennt.com API gives you access to pretty much all the features you can use on our dashboard and lets you extend them for use in your application. It strives to be RESTful and is organized around the main resources you would be interacting with - with a few notable exceptions.\n\n### Requests and Response\n\nBoth request body data and response data are formatted as JSON. Content type for responses will always be `application/json`. Generally, all responses will be in the following format:\n\n```js title=\"/src/components/HelloCodeTitle.js\"\n{\n  \"success\": [boolean], // true indicates a successful operation\n  \"elapsed\": [number], // time spent server side processing the request\n  \"error\": [string], // if success is false, this will indicate the error\n  \"result\": [object] // the result of the operation\n}\n```"
+  description: paymennt.com provides a collection of APIs that enable you to process and manage payments.
   version: '2.0'
 servers:
 - url: https://api.paymennt.com/mer/v2.0/
@@ -177,36 +177,6 @@ paths:
         sort: '10040'
 components:
   schemas:
-    BranchResponseWrapper:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: true
-        elapsed:
-          type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 12
-        result:
-          $ref: '#/components/schemas/BranchResponse'
-    GetListErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: false
-        elapsed:
-          type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 3
-        error:
-          type: string
-          description: Error message.
-          example: page size parameter must be a positive integer
     BranchRequest:
       required:
       - currency
@@ -225,7 +195,7 @@ components:
           type: string
           description: Short description of the branch.
           example: Main branch
-    PostBranchErrorResponse:
+    GetListErrorResponse:
       type: object
       properties:
         success:
@@ -240,7 +210,21 @@ components:
         error:
           type: string
           description: Error message.
-          example: A branch already exists with the same name 'Store'
+          example: page size parameter must be a positive integer
+    BranchResponseWrapper:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: true
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 12
+        result:
+          $ref: '#/components/schemas/BranchResponse'
     BranchResponse:
       type: object
       properties:
@@ -271,6 +255,22 @@ components:
           type: string
           description: Error message
           example: Branch not found for API merchant
+    PostBranchErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: false
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 3
+        error:
+          type: string
+          description: Error message.
+          example: A branch already exists with the same name 'Store'
   securitySchemes:
     ApiKey:
       type: apiKey
