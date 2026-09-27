@@ -359,7 +359,198 @@ paths:
         sort: '310'
 components:
   schemas:
-    CheckoutLinkResponse:
+    GetListErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: false
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 3
+        error:
+          type: string
+          description: Error message.
+          example: page size parameter must be a positive integer
+    CheckoutRequestItem:
+      required:
+      - linetotal
+      - name
+      - quantity
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the item being sold to the customer.
+          example: Dark grey sunglasses
+        sku:
+          type: string
+          description: Merchant item SKU.
+          example: '1116521'
+        unitprice:
+          type: number
+          description: Product unit price.
+          example: 50.0
+        quantity:
+          type: number
+          description: Quantity of item being bought by the user.
+          example: 2
+          exclusiveMinimum: 0
+        linetotal:
+          type: number
+          description: Total selling price for quantity of this item.
+          example: 100.0
+      description: An array of the items associated with this order.
+    GetCheckoutErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: false
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 3
+        error:
+          type: string
+          description: Error message
+          example: Checkout not found for API merchant
+    CheckoutLinkResponseWrapper:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: true
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 12
+        result:
+          $ref: '#/components/schemas/CheckoutLinkResponse'
+    CheckoutResponseWrapper:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: true
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 12
+        result:
+          $ref: '#/components/schemas/CheckoutResponse'
+    CheckoutWebPaymentResponseWrapper:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: true
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 12
+        result:
+          $ref: '#/components/schemas/ECommerceCheckoutResponse'
+    CheckoutCustomerResponse:
+      type: object
+      description: Customer associated with this checkout
+    CheckoutPaymentLinkRequest:
+      required:
+      - amount
+      - currency
+      - description
+      - orderId
+      - requestId
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: A unique Identifier for this request, can be used later to query the status on the checkout.
+          example: CHK-100000214-r1
+        orderId:
+          type: string
+          description: A merchant unique transaction ID for this checkout. This can be the order ID. Must match any reference shown to the user during checkout / order history.
+          example: CHK-100000214
+        description:
+          type: string
+          description: Description of the order.
+        currency:
+          type: string
+          description: ISO 4217 Currency Code (3 letter currency code).
+          example: AED
+        amount:
+          type: number
+          description: The amount customers must pay.
+          example: 100.0
+          exclusiveMinimum: 0
+        totals:
+          $ref: '#/components/schemas/CheckoutRequestTotals'
+        items:
+          type: array
+          description: An array of the items associated with this order.
+          items:
+            $ref: '#/components/schemas/CheckoutRequestItem'
+        sendSms:
+          type: boolean
+          description: Indicator to send the payment link via SMS to the customer.
+          example: true
+          default: false
+        sendEmail:
+          type: boolean
+          description: Indicator to send the payment link via Email to the customer.
+          example: true
+          default: false
+        customer:
+          $ref: '#/components/schemas/CheckoutCustomer'
+        billingAddress:
+          $ref: '#/components/schemas/CheckoutAddress'
+        deliveryAddress:
+          $ref: '#/components/schemas/CheckoutAddress'
+        branchId:
+          type: integer
+          description: The paymennt.com branch ID associated with this checkout.
+          format: int64
+        allowedPaymentMethods:
+          type: array
+          description: 'Array containing payment methods to be available at the payment page. When left empty all available options will show. When provided the payment methods order in the payment page will follow the same order passed in this parameter. '
+          items:
+            type: string
+            description: 'Array containing payment methods to be available at the payment page. When left empty all available options will show. When provided the payment methods order in the payment page will follow the same order passed in this parameter. '
+            enum:
+            - CARD
+            - POINTCHECKOUT
+        defaultPaymentMethod:
+          type: string
+          description: Active payment method when opening the payment page. When left empty the default for your account at paymennt.com will be used.
+          example: CARD
+          enum:
+          - CARD
+          - POINTCHECKOUT
+        expiresIn:
+          maximum: 10080
+          minimum: 15
+          type: integer
+          description: Number of minutes the payment will remain available, after that the payment will expire..
+          format: int32
+          example: 1440
+        language:
+          maxLength: 3
+          minLength: 2
+          type: string
+          description: 2 Letter ISO 639-1 language code, for viewing the payment page. When the language is not supported, the system will revert to the default.
+          example: EN
+    ECommerceCheckoutResponse:
       type: object
       properties:
         id:
@@ -426,10 +617,6 @@ components:
           - ZainCash
         customer:
           $ref: '#/components/schemas/CheckoutCustomerResponse'
-        subscriptionId:
-          type: string
-          description: The Id of the subscription at paymennt.com database that the checkout was issued for
-          example: '1619465605181100275'
         billingAddress:
           $ref: '#/components/schemas/CheckoutAddress'
         deliveryAddress:
@@ -456,74 +643,7 @@ components:
           type: string
           description: The paymennt.com branch name associated with this checkout.
           example: Test store
-      description: Checkout associated with the payment, this can be null if the payment link is never opened
-    CheckoutMobilePaymentRequest:
-      required:
-      - amount
-      - billingAddress
-      - currency
-      - customer
-      - items
-      - orderId
-      - requestId
-      type: object
-      properties:
-        requestId:
-          type: string
-          description: A unique Identifier for this request, can be used later to query the status on the checkout.
-          example: CHK-100000214-r1
-        orderId:
-          type: string
-          description: A merchant unique transaction ID for this checkout. This can be the order ID. Must match any reference shown to the user during checkout / order history.
-          example: CHK-100000214
-        currency:
-          type: string
-          description: ISO 4217 Currency Code (3 letter currency code).
-          example: AED
-        amount:
-          type: number
-          description: The amount customers must pay.
-          example: 100.0
-          exclusiveMinimum: 0
-        totals:
-          $ref: '#/components/schemas/CheckoutRequestTotals'
-        items:
-          type: array
-          description: An array of the items associated with this order.
-          items:
-            $ref: '#/components/schemas/CheckoutRequestItem'
-        customer:
-          $ref: '#/components/schemas/CheckoutCustomer'
-        billingAddress:
-          $ref: '#/components/schemas/CheckoutAddress'
-        deliveryAddress:
-          $ref: '#/components/schemas/CheckoutAddress'
-        branchId:
-          type: integer
-          description: The paymennt.com branch ID associated with this checkout.
-          format: int64
-        allowedPaymentMethods:
-          type: array
-          description: 'Array containing payment methods to be available at the payment page. When left empty all available options will show. When provided the payment methods order in the payment page will follow the same order passed in this parameter. '
-          items:
-            type: string
-            description: 'Array containing payment methods to be available at the payment page. When left empty all available options will show. When provided the payment methods order in the payment page will follow the same order passed in this parameter. '
-            enum:
-            - CARD
-            - POINTCHECKOUT
-        defaultPaymentMethod:
-          type: string
-          description: Active payment method when opening the payment page. When left empty the default for your account at paymennt.com will be used.
-          example: CARD
-          enum:
-          - CARD
-          - POINTCHECKOUT
-        language:
-          maxLength: 3
-          minLength: 2
-          type: string
-          description: 2 Letter ISO 639-1 language code, for viewing the payment page. When the language is not supported, the system will revert to the default.
-          example: EN
+      description: Result Object.
     CheckoutQRRequest:
       required:
       - amount
@@ -679,64 +799,6 @@ components:
           type: string
           description: 2 Letter ISO 639-1 language code, for viewing the payment page. When the language is not supported, the system will revert to the default.
           example: EN
-    GetListErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: false
-        elapsed:
-          type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 3
-        error:
-          type: string
-          description: Error message.
-          example: page size parameter must be a positive integer
-    CheckoutWebPaymentResponseWrapper:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: true
-        elapsed:
-          type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 12
-        result:
-          $ref: '#/components/schemas/ECommerceCheckoutResponse'
-    CheckoutResponseWrapper:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: true
-        elapsed:
-          type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 12
-        result:
-          $ref: '#/components/schemas/CheckoutResponse'
-    CheckoutLinkResponseWrapper:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: true
-        elapsed:
-          type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 12
-        result:
-          $ref: '#/components/schemas/CheckoutLinkResponse'
     CheckoutCustomer:
       required:
       - email
@@ -765,138 +827,6 @@ components:
           description: Customer phone number with international calling code (Ex. 971567xxxxxx)..
           example: '[CUSTOMER PHONE]'
       description: Customer associated with this subscription
-    CheckoutPaymentLinkRequest:
-      required:
-      - amount
-      - currency
-      - description
-      - orderId
-      - requestId
-      type: object
-      properties:
-        requestId:
-          type: string
-          description: A unique Identifier for this request, can be used later to query the status on the checkout.
-          example: CHK-100000214-r1
-        orderId:
-          type: string
-          description: A merchant unique transaction ID for this checkout. This can be the order ID. Must match any reference shown to the user during checkout / order history.
-          example: CHK-100000214
-        description:
-          type: string
-          description: Description of the order.
-        currency:
-          type: string
-          description: ISO 4217 Currency Code (3 letter currency code).
-          example: AED
-        amount:
-          type: number
-          description: The amount customers must pay.
-          example: 100.0
-          exclusiveMinimum: 0
-        totals:
-          $ref: '#/components/schemas/CheckoutRequestTotals'
-        items:
-          type: array
-          description: An array of the items associated with this order.
-          items:
-            $ref: '#/components/schemas/CheckoutRequestItem'
-        sendSms:
-          type: boolean
-          description: Indicator to send the payment link via SMS to the customer.
-          example: true
-          default: false
-        sendEmail:
-          type: boolean
-          description: Indicator to send the payment link via Email to the customer.
-          example: true
-          default: false
-        customer:
-          $ref: '#/components/schemas/CheckoutCustomer'
-        billingAddress:
-          $ref: '#/components/schemas/CheckoutAddress'
-        deliveryAddress:
-          $ref: '#/components/schemas/CheckoutAddress'
-        branchId:
-          type: integer
-          description: The paymennt.com branch ID associated with this checkout.
-          format: int64
-        allowedPaymentMethods:
-          type: array
-          description: 'Array containing payment methods to be available at the payment page. When left empty all available options will show. When provided the payment methods order in the payment page will follow the same order passed in this parameter. '
-          items:
-            type: string
-            description: 'Array containing payment methods to be available at the payment page. When left empty all available options will show. When provided the payment methods order in the payment page will follow the same order passed in this parameter. '
-            enum:
-            - CARD
-            - POINTCHECKOUT
-        defaultPaymentMethod:
-          type: string
-          description: Active payment method when opening the payment page. When left empty the default for your account at paymennt.com will be used.
-          example: CARD
-          enum:
-          - CARD
-          - POINTCHECKOUT
-        expiresIn:
-          maximum: 10080
-          minimum: 15
-          type: integer
-          description: Number of minutes the payment will remain available, after that the payment will expire..
-          format: int32
-          example: 1440
-        language:
-          maxLength: 3
-          minLength: 2
-          type: string
-          description: 2 Letter ISO 639-1 language code, for viewing the payment page. When the language is not supported, the system will revert to the default.
-          example: EN
-    CheckoutMobilePaymentResponseWrapper:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: true
-        elapsed:
-          type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 12
-        result:
-          $ref: '#/components/schemas/DeviceCheckoutResponse'
-    PageResponseCheckoutResponseWrapper:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: true
-        elapsed:
-          type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 12
-        result:
-          $ref: '#/components/schemas/PageResponseCheckoutResponse'
-    GetCheckoutErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: false
-        elapsed:
-          type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 3
-        error:
-          type: string
-          description: Error message
-          example: Checkout not found for API merchant
-    CheckoutCustomerResponse:
-      type: object
-      description: Customer associated with this checkout
     CheckoutResponse:
       type: object
       properties:
@@ -991,7 +921,88 @@ components:
           description: Checkout key, serves as a unique identifier for the checkout. Used to generate the payment payge redirect URL
           example: 90ed4298f15d46df994fd1cfbbec5aa24390e811295cf8b5
       description: Result Object.
-    ECommerceCheckoutResponse:
+    CheckoutMobilePaymentRequest:
+      required:
+      - amount
+      - billingAddress
+      - currency
+      - customer
+      - items
+      - orderId
+      - requestId
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: A unique Identifier for this request, can be used later to query the status on the checkout.
+          example: CHK-100000214-r1
+        orderId:
+          type: string
+          description: A merchant unique transaction ID for this checkout. This can be the order ID. Must match any reference shown to the user during checkout / order history.
+          example: CHK-100000214
+        currency:
+          type: string
+          description: ISO 4217 Currency Code (3 letter currency code).
+          example: AED
+        amount:
+          type: number
+          description: The amount customers must pay.
+          example: 100.0
+          exclusiveMinimum: 0
+        totals:
+          $ref: '#/components/schemas/CheckoutRequestTotals'
+        items:
+          type: array
+          description: An array of the items associated with this order.
+          items:
+            $ref: '#/components/schemas/CheckoutRequestItem'
+        customer:
+          $ref: '#/components/schemas/CheckoutCustomer'
+        billingAddress:
+          $ref: '#/components/schemas/CheckoutAddress'
+        deliveryAddress:
+          $ref: '#/components/schemas/CheckoutAddress'
+        branchId:
+          type: integer
+          description: The paymennt.com branch ID associated with this checkout.
+          format: int64
+        allowedPaymentMethods:
+          type: array
+          description: 'Array containing payment methods to be available at the payment page. When left empty all available options will show. When provided the payment methods order in the payment page will follow the same order passed in this parameter. '
+          items:
+            type: string
+            description: 'Array containing payment methods to be available at the payment page. When left empty all available options will show. When provided the payment methods order in the payment page will follow the same order passed in this parameter. '
+            enum:
+            - CARD
+            - POINTCHECKOUT
+        defaultPaymentMethod:
+          type: string
+          description: Active payment method when opening the payment page. When left empty the default for your account at paymennt.com will be used.
+          example: CARD
+          enum:
+          - CARD
+          - POINTCHECKOUT
+        language:
+          maxLength: 3
+          minLength: 2
+          type: string
+          description: 2 Letter ISO 639-1 language code, for viewing the payment page. When the language is not supported, the system will revert to the default.
+          example: EN
+    PageResponseCheckoutResponseWrapper:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: true
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 12
+        result:
+          $ref: '#/components/schemas/PageResponseCheckoutResponse'
+    CheckoutLinkResponse:
       type: object
       properties:
         id:
@@ -1058,6 +1069,10 @@ components:
           - ZainCash
         customer:
           $ref: '#/components/schemas/CheckoutCustomerResponse'
+        subscriptionId:
+          type: string
+          description: The Id of the subscription at paymennt.com database that the checkout was issued for
+          example: '1619465605181100275'
         billingAddress:
           $ref: '#/components/schemas/CheckoutAddress'
         deliveryAddress:
@@ -1084,102 +1099,7 @@ components:
           type: string
           description: The paymennt.com branch name associated with this checkout.
           example: Test store
-      description: Result Object.
-    PageResponseCheckoutResponse:
-      type: object
-      properties:
-        page:
-          type: integer
-          description: Item page number, starting with 0
-          format: int32
-          example: 0
-        size:
-          type: integer
-          description: Number of items per page
-          format: int32
-          example: 10
-        totalPages:
-          type: integer
-          description: Total pages
-          format: int32
-          example: 1
-        totalElements:
-          type: integer
-          description: Total elements in the current page
-          format: int64
-          example: 7
-        content:
-          type: array
-          description: Page content array
-          items:
-            $ref: '#/components/schemas/CheckoutResponse'
-      description: Result Object.
-    CheckoutRequestItem:
-      required:
-      - linetotal
-      - name
-      - quantity
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the item being sold to the customer.
-          example: Dark grey sunglasses
-        sku:
-          type: string
-          description: Merchant item SKU.
-          example: '1116521'
-        unitprice:
-          type: number
-          description: Product unit price.
-          example: 50.0
-        quantity:
-          type: number
-          description: Quantity of item being bought by the user.
-          example: 2
-          exclusiveMinimum: 0
-        linetotal:
-          type: number
-          description: Total selling price for quantity of this item.
-          example: 100.0
-      description: An array of the items associated with this order.
-    CheckoutAddress:
-      required:
-      - address1
-      - city
-      - country
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: Address person name.
-          example: '[NAME]'
-        address1:
-          type: string
-          description: Address line 1.
-          example: '[ADDRESS 1]'
-        address2:
-          type: string
-          description: Address line 2.
-          example: '[ADDRESS 2]'
-        city:
-          type: string
-          description: Address city.
-          example: '[CITY]'
-        state:
-          type: string
-          description: Address state.
-          example: '[STATE]'
-        zip:
-          type: string
-          description: Address zip code.
-          example: '12345'
-        country:
-          type: string
-          description: Address country (ISO 3166-1 alpha-3 or alpha-2 country code)
-          example: AE
-      description: Delivery address
+      description: Checkout associated with the payment, this can be null if the payment link is never opened
     DeviceCheckoutResponse:
       type: object
       properties:
@@ -1311,20 +1231,6 @@ components:
           example: false
           default: true
       description: Order totals
-    CheckoutQRResponseWrapper:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: true
-        elapsed:
-          type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 12
-        result:
-          $ref: '#/components/schemas/CheckoutQRResponse'
     CheckoutQRResponse:
       type: object
       properties:
@@ -1423,6 +1329,100 @@ components:
           description: The paymennt.com branch name associated with this checkout.
           example: Test store
       description: Result Object.
+    CheckoutAddress:
+      required:
+      - address1
+      - city
+      - country
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Address person name.
+          example: '[NAME]'
+        address1:
+          type: string
+          description: Address line 1.
+          example: '[ADDRESS 1]'
+        address2:
+          type: string
+          description: Address line 2.
+          example: '[ADDRESS 2]'
+        city:
+          type: string
+          description: Address city.
+          example: '[CITY]'
+        state:
+          type: string
+          description: Address state.
+          example: '[STATE]'
+        zip:
+          type: string
+          description: Address zip code.
+          example: '12345'
+        country:
+          type: string
+          description: Address country (ISO 3166-1 alpha-3 or alpha-2 country code)
+          example: AE
+      description: Delivery address
+    CheckoutQRResponseWrapper:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: true
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 12
+        result:
+          $ref: '#/components/schemas/CheckoutQRResponse'
+    PageResponseCheckoutResponse:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Item page number, starting with 0
+          format: int32
+          example: 0
+        size:
+          type: integer
+          description: Number of items per page
+          format: int32
+          example: 10
+        totalPages:
+          type: integer
+          description: Total pages
+          format: int32
+          example: 1
+        totalElements:
+          type: integer
+          description: Total elements in the current page
+          format: int64
+          example: 7
+        content:
+          type: array
+          description: Page content array
+          items:
+            $ref: '#/components/schemas/CheckoutResponse'
+      description: Result Object.
+    CheckoutMobilePaymentResponseWrapper:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: true
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 12
+        result:
+          $ref: '#/components/schemas/DeviceCheckoutResponse'
   securitySchemes:
     ApiKey:
       type: apiKey

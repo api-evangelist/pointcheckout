@@ -247,20 +247,20 @@ components:
           type: string
           description: Error message.
           example: page size parameter must be a positive integer
-    WebhookResponse:
+    WebhookResponseWrapper:
       type: object
       properties:
-        id:
-          type: string
-        hmacKey:
-          type: string
-        address:
-          type: string
-        failed:
+        success:
           type: boolean
-        enabled:
-          type: boolean
-      description: Result Object.
+          description: Whether or not this operation completed successfully.
+          example: true
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 12
+        result:
+          $ref: '#/components/schemas/WebhookResponse'
     GetWebhookErrorResponse:
       type: object
       properties:
@@ -277,6 +277,20 @@ components:
           type: string
           description: Error message
           example: Webhook not found for API merchant
+    WebhookResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        hmacKey:
+          type: string
+        address:
+          type: string
+        failed:
+          type: boolean
+        enabled:
+          type: boolean
+      description: Result Object.
     WebhookRequest:
       required:
       - address
@@ -285,20 +299,6 @@ components:
         address:
           type: string
           description: Webhook endpoint that paymennt.com server will push messages to.
-    WebhookResponseWrapper:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: true
-        elapsed:
-          type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 12
-        result:
-          $ref: '#/components/schemas/WebhookResponse'
   securitySchemes:
     ApiKey:
       type: apiKey

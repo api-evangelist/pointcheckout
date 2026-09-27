@@ -177,24 +177,6 @@ paths:
         sort: '10040'
 components:
   schemas:
-    BranchRequest:
-      required:
-      - currency
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: Branch name.
-          example: Main branch
-        currency:
-          type: string
-          description: Branch currency code, ISO 4217 Currency Code (3 letter currency code).
-          example: Main branch
-        description:
-          type: string
-          description: Short description of the branch.
-          example: Main branch
     GetListErrorResponse:
       type: object
       properties:
@@ -225,20 +207,24 @@ components:
           example: 12
         result:
           $ref: '#/components/schemas/BranchResponse'
-    BranchResponse:
+    BranchRequest:
+      required:
+      - currency
+      - name
       type: object
       properties:
-        id:
-          type: string
         name:
           type: string
+          description: Branch name.
+          example: Main branch
         currency:
           type: string
+          description: Branch currency code, ISO 4217 Currency Code (3 letter currency code).
+          example: Main branch
         description:
           type: string
-        enabled:
-          type: boolean
-      description: Result Object.
+          description: Short description of the branch.
+          example: Main branch
     GetBranchErrorResponse:
       type: object
       properties:
@@ -271,6 +257,20 @@ components:
           type: string
           description: Error message.
           example: A branch already exists with the same name 'Store'
+    BranchResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        currency:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+      description: Result Object.
   securitySchemes:
     ApiKey:
       type: apiKey

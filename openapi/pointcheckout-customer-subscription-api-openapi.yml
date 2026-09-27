@@ -261,7 +261,7 @@ paths:
         sort: '1170'
 components:
   schemas:
-    SubscriptionResponseWrapper:
+    PageResponseSubscriptionResponseWrapper:
       type: object
       properties:
         success:
@@ -274,31 +274,72 @@ components:
           format: int64
           example: 12
         result:
-          $ref: '#/components/schemas/SubscriptionResponse'
-    CheckoutCustomerResponse:
-      type: object
-      description: Customer associated with this checkout
-    SubscriptionPaymentResponse:
+          $ref: '#/components/schemas/PageResponseSubscriptionResponse'
+    CheckoutCustomer:
+      required:
+      - email
+      - firstName
+      - lastName
       type: object
       properties:
         id:
           type: string
-          description: Subscription payment ID at paymennt.com database
-          example: '1653241101733169556'
-        displayId:
+          description: Customer identifier at the merchant system.
+          example: '123456'
+        firstName:
           type: string
-          description: Subscription payment human readable short key, serves as an easier reference to the subscription
-          example: QS3IM5
-        checkout:
-          $ref: '#/components/schemas/CheckoutLinkResponse'
-        timestamp:
+          description: Customer first name.
+          example: '[First name]'
+        lastName:
           type: string
-          description: The date time of creating the payment in ISO8601 format (yyyy-MM-ddTHH:mm:ss.SSSZZ).
-          format: date-time
-        cancelled:
-          type: boolean
-          description: Whether this payment is cancelled or not
-      description: Page content array
+          description: Customer last name.
+          example: '[Last name]'
+        email:
+          type: string
+          description: Customer email address.
+          example: '[CUSTOMER EMAIL]'
+        phone:
+          type: string
+          description: Customer phone number with international calling code (Ex. 971567xxxxxx)..
+          example: '[CUSTOMER PHONE]'
+      description: Customer associated with this subscription
+    CheckoutAddress:
+      required:
+      - address1
+      - city
+      - country
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Address person name.
+          example: '[NAME]'
+        address1:
+          type: string
+          description: Address line 1.
+          example: '[ADDRESS 1]'
+        address2:
+          type: string
+          description: Address line 2.
+          example: '[ADDRESS 2]'
+        city:
+          type: string
+          description: Address city.
+          example: '[CITY]'
+        state:
+          type: string
+          description: Address state.
+          example: '[STATE]'
+        zip:
+          type: string
+          description: Address zip code.
+          example: '12345'
+        country:
+          type: string
+          description: Address country (ISO 3166-1 alpha-3 or alpha-2 country code)
+          example: AE
+      description: Delivery address
     GetListErrorResponse:
       type: object
       properties:
@@ -315,20 +356,25 @@ components:
           type: string
           description: Error message.
           example: page size parameter must be a positive integer
-    PageResponseSubscriptionResponseWrapper:
+    CheckoutCustomerResponse:
+      type: object
+      description: Customer associated with this checkout
+    GetSubscriptionErrorResponse:
       type: object
       properties:
         success:
           type: boolean
           description: Whether or not this operation completed successfully.
-          example: true
+          example: false
         elapsed:
           type: integer
           description: Time in milliseconds elapsed at server processing this request.
           format: int64
-          example: 12
-        result:
-          $ref: '#/components/schemas/PageResponseSubscriptionResponse'
+          example: 3
+        error:
+          type: string
+          description: Error message
+          example: Subscription not found for API merchant
     CheckoutLinkResponse:
       type: object
       properties:
@@ -427,74 +473,89 @@ components:
           description: The paymennt.com branch name associated with this checkout.
           example: Test store
       description: Checkout associated with the payment, this can be null if the payment link is never opened
-    GetSubscriptionErrorResponse:
+    SubscriptionPaymentResponse:
       type: object
       properties:
-        success:
+        id:
+          type: string
+          description: Subscription payment ID at paymennt.com database
+          example: '1653241101733169556'
+        displayId:
+          type: string
+          description: Subscription payment human readable short key, serves as an easier reference to the subscription
+          example: QS3IM5
+        checkout:
+          $ref: '#/components/schemas/CheckoutLinkResponse'
+        timestamp:
+          type: string
+          description: The date time of creating the payment in ISO8601 format (yyyy-MM-ddTHH:mm:ss.SSSZZ).
+          format: date-time
+        cancelled:
           type: boolean
-          description: Whether or not this operation completed successfully.
-          example: false
-        elapsed:
+          description: Whether this payment is cancelled or not
+      description: Page content array
+    SubscriptionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Subscription ID at paymennt.com database
+          example: '1653241101733169556'
+        displayId:
+          type: string
+          description: Subscription human readable short key, serves as an easier reference to the subscription
+          example: QS3IM5
+        description:
+          type: string
+          description: Subscription decription
+          example: dozen of cookies
+        currency:
+          type: string
+          description: ISO 4217 Currency Code (3 letter currency code) associated with this subscription.
+          example: USD
+        amount:
+          type: number
+          description: The grand total of the whole order. This is the amount the customer must pay.
+          example: 1499.99
+        status:
+          type: string
+          description: Current subscription status.
+          example: ACTIVE
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - ARCHIVED
+          - EXPIRED
+        customer:
+          $ref: '#/components/schemas/CheckoutCustomerResponse'
+        startDate:
+          type: string
+          description: The start date of the subscription in format (yyyy-MM-dd).
+          format: date
+        endDate:
+          type: string
+          description: The end date of the subscription in format (yyyy-MM-dd).
+          format: date
+        sendOnHour:
           type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
+          description: The hour of day the checkout will be created on
+          format: int32
           example: 3
-        error:
-          type: string
-          description: Error message
-          example: Subscription not found for API merchant
-    PageResponseSubscriptionPaymentResponseWrapper:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: true
-        elapsed:
+        period:
           type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 12
-        result:
-          $ref: '#/components/schemas/PageResponseSubscriptionPaymentResponse'
-    CheckoutAddress:
-      required:
-      - address1
-      - city
-      - country
-      - name
-      type: object
-      properties:
-        name:
+          description: The period between every checkout to be created
+          format: int32
+          example: 1
+        periodUnit:
           type: string
-          description: Address person name.
-          example: '[NAME]'
-        address1:
-          type: string
-          description: Address line 1.
-          example: '[ADDRESS 1]'
-        address2:
-          type: string
-          description: Address line 2.
-          example: '[ADDRESS 2]'
-        city:
-          type: string
-          description: Address city.
-          example: '[CITY]'
-        state:
-          type: string
-          description: Address state.
-          example: '[STATE]'
-        zip:
-          type: string
-          description: Address zip code.
-          example: '12345'
-        country:
-          type: string
-          description: Address country (ISO 3166-1 alpha-3 or alpha-2 country code)
-          example: AE
-      description: Delivery address
-    PageResponseSubscriptionPaymentResponse:
+          description: The period unit
+          example: DAYS
+          enum:
+          - DAYS
+          - WEEKS
+          - MONTHS
+      description: Result Object.
+    PageResponseSubscriptionResponse:
       type: object
       properties:
         page:
@@ -521,8 +582,36 @@ components:
           type: array
           description: Page content array
           items:
-            $ref: '#/components/schemas/SubscriptionPaymentResponse'
+            $ref: '#/components/schemas/SubscriptionResponse'
       description: Result Object.
+    SubscriptionResponseWrapper:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: true
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 12
+        result:
+          $ref: '#/components/schemas/SubscriptionResponse'
+    PageResponseSubscriptionPaymentResponseWrapper:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: true
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 12
+        result:
+          $ref: '#/components/schemas/PageResponseSubscriptionPaymentResponse'
     SubscriptionRequest:
       required:
       - amount
@@ -585,96 +674,7 @@ components:
           type: string
           description: URL to redirect user to after a successful or failed payment.(Optional)
           example: https://example.com/subscription/payment-check/
-    SubscriptionResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Subscription ID at paymennt.com database
-          example: '1653241101733169556'
-        displayId:
-          type: string
-          description: Subscription human readable short key, serves as an easier reference to the subscription
-          example: QS3IM5
-        description:
-          type: string
-          description: Subscription decription
-          example: dozen of cookies
-        currency:
-          type: string
-          description: ISO 4217 Currency Code (3 letter currency code) associated with this subscription.
-          example: USD
-        amount:
-          type: number
-          description: The grand total of the whole order. This is the amount the customer must pay.
-          example: 1499.99
-        status:
-          type: string
-          description: Current subscription status.
-          example: ACTIVE
-          enum:
-          - ACTIVE
-          - INACTIVE
-          - ARCHIVED
-          - EXPIRED
-        customer:
-          $ref: '#/components/schemas/CheckoutCustomerResponse'
-        startDate:
-          type: string
-          description: The start date of the subscription in format (yyyy-MM-dd).
-          format: date
-        endDate:
-          type: string
-          description: The end date of the subscription in format (yyyy-MM-dd).
-          format: date
-        sendOnHour:
-          type: integer
-          description: The hour of day the checkout will be created on
-          format: int32
-          example: 3
-        period:
-          type: integer
-          description: The period between every checkout to be created
-          format: int32
-          example: 1
-        periodUnit:
-          type: string
-          description: The period unit
-          example: DAYS
-          enum:
-          - DAYS
-          - WEEKS
-          - MONTHS
-      description: Result Object.
-    CheckoutCustomer:
-      required:
-      - email
-      - firstName
-      - lastName
-      type: object
-      properties:
-        id:
-          type: string
-          description: Customer identifier at the merchant system.
-          example: '123456'
-        firstName:
-          type: string
-          description: Customer first name.
-          example: '[First name]'
-        lastName:
-          type: string
-          description: Customer last name.
-          example: '[Last name]'
-        email:
-          type: string
-          description: Customer email address.
-          example: '[CUSTOMER EMAIL]'
-        phone:
-          type: string
-          description: Customer phone number with international calling code (Ex. 971567xxxxxx)..
-          example: '[CUSTOMER PHONE]'
-      description: Customer associated with this subscription
-    PageResponseSubscriptionResponse:
+    PageResponseSubscriptionPaymentResponse:
       type: object
       properties:
         page:
@@ -701,7 +701,7 @@ components:
           type: array
           description: Page content array
           items:
-            $ref: '#/components/schemas/SubscriptionResponse'
+            $ref: '#/components/schemas/SubscriptionPaymentResponse'
       description: Result Object.
   securitySchemes:
     ApiKey:
