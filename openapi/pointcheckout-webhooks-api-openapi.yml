@@ -231,6 +231,20 @@ paths:
         sort: '10110'
 components:
   schemas:
+    WebhookResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        hmacKey:
+          type: string
+        address:
+          type: string
+        failed:
+          type: boolean
+        enabled:
+          type: boolean
+      description: Result Object.
     GetListErrorResponse:
       type: object
       properties:
@@ -277,20 +291,6 @@ components:
           type: string
           description: Error message
           example: Webhook not found for API merchant
-    WebhookResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        hmacKey:
-          type: string
-        address:
-          type: string
-        failed:
-          type: boolean
-        enabled:
-          type: boolean
-      description: Result Object.
     WebhookRequest:
       required:
       - address
