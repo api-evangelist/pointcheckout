@@ -177,6 +177,52 @@ paths:
         sort: '10040'
 components:
   schemas:
+    BranchResponseWrapper:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: true
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 12
+        result:
+          $ref: '#/components/schemas/BranchResponse'
+    GetListErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: false
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 3
+        error:
+          type: string
+          description: Error message.
+          example: page size parameter must be a positive integer
+    GetBranchErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: false
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 3
+        error:
+          type: string
+          description: Error message
+          example: Branch not found for API merchant
     BranchResponse:
       type: object
       properties:
@@ -191,6 +237,22 @@ components:
         enabled:
           type: boolean
       description: Result Object.
+    PostBranchErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: false
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 3
+        error:
+          type: string
+          description: Error message.
+          example: A branch already exists with the same name 'Store'
     BranchRequest:
       required:
       - currency
@@ -209,68 +271,6 @@ components:
           type: string
           description: Short description of the branch.
           example: Main branch
-    PostBranchErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: false
-        elapsed:
-          type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 3
-        error:
-          type: string
-          description: Error message.
-          example: A branch already exists with the same name 'Store'
-    GetBranchErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: false
-        elapsed:
-          type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 3
-        error:
-          type: string
-          description: Error message
-          example: Branch not found for API merchant
-    GetListErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: false
-        elapsed:
-          type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 3
-        error:
-          type: string
-          description: Error message.
-          example: page size parameter must be a positive integer
-    BranchResponseWrapper:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: true
-        elapsed:
-          type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 12
-        result:
-          $ref: '#/components/schemas/BranchResponse'
   securitySchemes:
     ApiKey:
       type: apiKey

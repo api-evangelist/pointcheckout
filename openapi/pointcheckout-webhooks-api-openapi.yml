@@ -231,20 +231,30 @@ paths:
         sort: '10110'
 components:
   schemas:
-    WebhookResponse:
+    GetWebhookErrorResponse:
       type: object
       properties:
-        id:
+        success:
+          type: boolean
+          description: Whether or not this operation completed successfully.
+          example: false
+        elapsed:
+          type: integer
+          description: Time in milliseconds elapsed at server processing this request.
+          format: int64
+          example: 3
+        error:
           type: string
-        hmacKey:
-          type: string
+          description: Error message
+          example: Webhook not found for API merchant
+    WebhookRequest:
+      required:
+      - address
+      type: object
+      properties:
         address:
           type: string
-        failed:
-          type: boolean
-        enabled:
-          type: boolean
-      description: Result Object.
+          description: Webhook endpoint that paymennt.com server will push messages to.
     GetListErrorResponse:
       type: object
       properties:
@@ -275,30 +285,20 @@ components:
           example: 12
         result:
           $ref: '#/components/schemas/WebhookResponse'
-    GetWebhookErrorResponse:
+    WebhookResponse:
       type: object
       properties:
-        success:
-          type: boolean
-          description: Whether or not this operation completed successfully.
-          example: false
-        elapsed:
-          type: integer
-          description: Time in milliseconds elapsed at server processing this request.
-          format: int64
-          example: 3
-        error:
+        id:
           type: string
-          description: Error message
-          example: Webhook not found for API merchant
-    WebhookRequest:
-      required:
-      - address
-      type: object
-      properties:
+        hmacKey:
+          type: string
         address:
           type: string
-          description: Webhook endpoint that paymennt.com server will push messages to.
+        failed:
+          type: boolean
+        enabled:
+          type: boolean
+      description: Result Object.
   securitySchemes:
     ApiKey:
       type: apiKey
