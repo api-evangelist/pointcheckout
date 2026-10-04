@@ -116,6 +116,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/pointcheckout-capability-edges.yml
+  name: PointCheckout Business Capability Map
 - type: Overlay
   url: overlays/pointcheckout-merchant-api-overlay.yaml
 - type: DomainSecurity
